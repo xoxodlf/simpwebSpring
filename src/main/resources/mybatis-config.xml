@@ -4,8 +4,8 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.ex.ex.test.domain.UserDTO"
-			alias="test" />
+		<typeAlias type="com.ex.ex.test.domain.UserDTO" alias="test" />
+		<typeAlias type="com.ex.ex.test.domain.ArticleDTO" alias="article"/>
 	</typeAliases>
 </configuration>
 
