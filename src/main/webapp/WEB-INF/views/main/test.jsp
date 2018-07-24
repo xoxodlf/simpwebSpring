@@ -9,6 +9,10 @@
 </head>
 <body>
 	<div class="inbox-body">
+		<div>
+			<p><img src="/ex/resources/img/anonymous.png"/></p>
+			<h4 style="margin-left: 30px;">익명게시판입니다. 비방은 사절입니다.</h4>
+		</div>
 		<div class="mail-option">
 			<div class="chk-all">
 				<input type="checkbox" class="mail-checkbox mail-group-checkbox">
