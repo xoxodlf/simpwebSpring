@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>
-	Hello world!  Jihee 수정 ㅎ 2차에욤ㅎㅎㅎ 사실 3차에욤
+	Hello world!  지희야 인코딩설정을 잘하자!
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
