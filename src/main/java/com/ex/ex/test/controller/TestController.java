@@ -50,7 +50,6 @@ public class TestController {
 		for(UserDTO user : list) {
 			System.out.println(user.toString());
 		}
-		System.out.println("나는 귀여운 이혜은 ^^");
 		model.addAttribute("userList", list);
 		
 		
