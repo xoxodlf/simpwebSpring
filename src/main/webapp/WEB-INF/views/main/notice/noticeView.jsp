@@ -6,6 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Notice</title>
+<style type="text/css">
+.jth{
+	background:#47C83E;
+	text-align: center;
+	color:white;
+}
+</style>
 </head>
 <body>
 	<div class="inbox-body">
@@ -67,7 +74,7 @@
 		</div>
 		<table class="table table-inbox table-hover">
 			<tbody>
-			<tr class=""><th>no</th><th>id</th><th>pw</th><th>name</th><th>?</th></tr>
+			<tr class=""><th class="jth">no</th><th class="jth">id</th><th class="jth">pw</th><th class="jth">name</th><th class="jth">?</th></tr>
 					<tr class="">
 						<td class="inbox-small-cells">sdf</td>
 						<td class="view-message dont-show">sdf</td>
