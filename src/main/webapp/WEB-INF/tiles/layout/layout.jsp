@@ -10,10 +10,9 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
+<link href="<c:url value="/resources/css/layout.css" />" rel="stylesheet">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<link href="<c:url value="/resources/css/layout.css" />"
-	rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <body>
