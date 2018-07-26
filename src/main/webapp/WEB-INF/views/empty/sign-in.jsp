@@ -65,9 +65,18 @@ body {
           <input type="checkbox" value="remember-me"> Remember me
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <button class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
+      <button id="signin" class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
+      <button id="signup" class="btn btn-lg btn-primary btn-block" type="button">Sign up</button>
       <p class="mt-5 mb-3 text-muted">&copy;2018</p>
     </form>
+    
+    <script type="text/javascript">
+    $("#signin").on('click', (function() {
+		location.href="/ex/unknown/";
+	}));
+    $("#signup").on('click', (function() {
+		location.href="/ex/user/signUp/";
+	}));
+    </script>
 </body>
 </html>

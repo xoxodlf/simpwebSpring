@@ -16,11 +16,13 @@ public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String article(Locale locale, Model model) {
+	public String signin(Locale locale, Model model) {
 		logger.info("Welcome sign-in! The client locale is {}.", locale);
-		
-		
-		
 		return "empty/sign-in.emp";
+	}
+	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	public String signup(Locale locale, Model model) {
+		logger.info("Welcome sign-up! The client locale is {}.", locale);
+		return "empty/sign-up.emp";
 	}
 }
