@@ -6,13 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="<c:url value="/resources/js/jquery.min.js" />"></script>
 <link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
+	href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet" id="bootstrap-css">
 <link href="<c:url value="/resources/css/layout.css" />" rel="stylesheet">
 <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 <title>Insert title here</title>
 </head>
 <body>

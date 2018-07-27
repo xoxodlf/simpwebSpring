@@ -36,4 +36,13 @@ public class HomeController {
 		return "main/home";
 	}
 	
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String main(Locale locale, Model model) {
+		logger.info("Welcome main! The client locale is {}.", locale);
+		
+		
+		
+		return "main/main.lay";
+	}
+	
 }
