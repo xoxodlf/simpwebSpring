@@ -39,7 +39,7 @@
 			</div>
 
 			<ul class="unstyled inbox-pagination">
-				<a data-placement="top" href="write"
+				<a data-placement="top" href="/ex/notice/write"
 					class="ji btn mini fa fa-angle-right pagination-right"> <i
 					class="ji">글쓰기</i>
 				</a>
@@ -57,7 +57,7 @@
 				<tr class="">
 					<td class="inbox-small-cells">1</td>
 					<td class="view-message dont-show">관리자</td>
-					<td class="view-message">첫 공지사항</td>
+					<td class="view-message"><a href="/ex/notice/content">첫 공지사항</a></td>
 					<td class="view-message inbox-small-cells">2018.07.27</td>
 					<td class="view-message text-right">24</td>
 				</tr>

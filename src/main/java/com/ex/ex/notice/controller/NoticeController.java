@@ -9,16 +9,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping("/notice")
 public class NoticeController {
 
 	Service service;
 
-	@RequestMapping("/notice")
+	@RequestMapping("/")
 	public String list(Model model) {
 		System.out.println("notice()");
 
-//		service = new ListService();
-//		service.execute(model);
+		// service = new ListService();
+		// service.execute(model);
 
 		return "main/notice/noticeView.lay";
 	}
@@ -34,32 +35,33 @@ public class NoticeController {
 	public String write(HttpServletRequest request, Model model) {
 		System.out.println("write()");
 		model.addAttribute("request", request);
-//		service = new WriteService();
-//		service.execute(model);
+		// service = new WriteService();
+		// service.execute(model);
 
 		return "main/notice/noticeWrite.lay";
 	}
 
-	@RequestMapping("/content_view")
+	@RequestMapping("/content")
 	public String content_view(HttpServletRequest request, Model model) {
 		System.out.println("content_view()");
 
 		model.addAttribute("request", request);
-//		service = new ContentService();
-//		service.execute(model);
+		// service = new ContentService();
+		// service.execute(model);
 
-		return "content_view";
+		return "main/notice/noticeContent.lay";
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/modify")
+	// method = RequestMethod.POST, value =
+	@RequestMapping("/modify")
 	public String modify(HttpServletRequest request, Model model) {
 		System.out.println("modify()");
 
 		model.addAttribute("request", request);
-//		service = new ModifyService();
-//		service.execute(model);
+		// service = new ModifyService();
+		// service.execute(model);
 
-		return "redirect:notice";
+		return "main/notice/noticeModify.lay";
 	}
 
 	@RequestMapping("/reply_view")
@@ -67,8 +69,8 @@ public class NoticeController {
 		System.out.println("reply_view()");
 
 		model.addAttribute("request", request);
-//		service = new ReplyViewService();
-//		service.execute(model);
+		// service = new ReplyViewService();
+		// service.execute(model);
 
 		return "reply_view";
 
@@ -79,8 +81,8 @@ public class NoticeController {
 		System.out.println("reply()");
 
 		model.addAttribute("request", request);
-//		service = new ReplyService();
-//		service.execute(model);
+		// service = new ReplyService();
+		// service.execute(model);
 		return "redirect:notice";
 	}
 
@@ -89,8 +91,8 @@ public class NoticeController {
 		System.out.println("delete()");
 
 		model.addAttribute("request", request);
-//		service = new DeleteService();
-//		service.execute(model);
+		// service = new DeleteService();
+		// service.execute(model);
 
 		return "redirect:notice";
 	}
