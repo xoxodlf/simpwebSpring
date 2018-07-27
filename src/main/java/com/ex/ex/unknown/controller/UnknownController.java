@@ -16,11 +16,13 @@ public class UnknownController {
 private static final Logger logger = LoggerFactory.getLogger(UnknownController.class);
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String article(Locale locale, Model model) {
-		logger.info("Welcome article! The client locale is {}.", locale);
-		
-		
-		
+	public String boardList(Locale locale, Model model) {
+		logger.info("Welcome boardListView! The client locale is {}.", locale);
 		return "main/unknown/boardListView.lay";
+	}
+	@RequestMapping(value = "/form", method = RequestMethod.GET)
+	public String boardForm(Locale locale, Model model) {
+		logger.info("Welcome boardForm! The client locale is {}.", locale);
+		return "main/unknown/boardForm.lay";
 	}
 }
