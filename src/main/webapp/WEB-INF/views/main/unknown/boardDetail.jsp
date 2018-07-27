@@ -43,6 +43,11 @@ text-align: left;
 td{
 text-align: center;
 }
+.commentbox{
+max-width:965px;
+min-width: 700px;
+resize: none;
+}
 </style>
 </head>
 <body>
@@ -80,6 +85,27 @@ text-align: center;
 			<div class="right" style="width:50%; display: inline-block;">
 				<a id="modify" data-placement="top" href="#" class="tbtn btn"> <i class="ti">글수정</i></a>
 			</div>
+			</div>
+			<div class="table-max" style="width:100%; margin-top: 20px;">
+			<table class="table table-inbox table-max">
+				<colgroup>
+					<col width="12%" />
+					<col width="*" />
+					<col width="10%" />
+					<col width="10%" />
+					<col width="10%" />
+				</colgroup>
+				<tr>
+					<td class="tdc t_thr" style="vertical-align: middle;">댓글달기</td>
+					<td colspan="3"><textarea class="commentbox"></textarea></td>
+					<td><a id="list" data-placement="top" href="#" class="tbtn btn"> <i class="ti">등록</i></a></td>
+				</tr>
+				<tr style="margin-top:20px;">
+					<td class="tdc t_thr">양태일</td>
+					<td colspan="3">제목은 비밀이지롱~</td>
+					<td></td>
+				</tr>
+			</table>
 			</div>
 			
 		</form>
