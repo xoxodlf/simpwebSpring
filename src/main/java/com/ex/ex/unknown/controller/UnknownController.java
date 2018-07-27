@@ -25,4 +25,14 @@ private static final Logger logger = LoggerFactory.getLogger(UnknownController.c
 		logger.info("Welcome boardForm! The client locale is {}.", locale);
 		return "main/unknown/boardForm.lay";
 	}
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String boardModify(Locale locale, Model model) {
+		logger.info("Welcome boardForm! The client locale is {}.", locale);
+		return "main/unknown/boardModify.lay";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String boardDetail(Locale locale, Model model) {
+		logger.info("Welcome boardForm! The client locale is {}.", locale);
+		return "main/unknown/boardDetail.lay";
+	}
 }

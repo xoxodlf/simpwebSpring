@@ -39,7 +39,7 @@
 			<tr class="t_thr"><th class="ttdh">No</th><th class="ttdh">제목</th><th class="ttdh">날짜</th><th class="ttdh">조회수</th></tr>
 					<tr class="">
 						<td class="ttdh">1</td>
-						<td class="ttdh">게시글 제목입니다~</td>
+						<td class="ttdh"><a id="goCon">게시글 제목입니다~</a></td>
 						<td class="ttdh">2018/07/25</td>
 						<td class="ttdh">1</td>
 					</tr>
@@ -49,6 +49,9 @@
 	<script type="text/javascript">
 	$("#write").on('click', (function() {
 		location.href="/ex/unknown/form";
+	}));
+	$("#goCon").on('click', (function() {
+		location.href="/ex/unknown/detail";
 	}));
 	</script>
 </body>
