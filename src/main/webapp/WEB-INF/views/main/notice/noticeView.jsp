@@ -7,17 +7,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Notice</title>
 <style type="text/css">
-.jth{
-	background:#47C83E;
+.jth {
+	background: #47C83E;
 	text-align: center;
-	color:white;
+	color: white;
+}
+
+.ji {
+	background: #47C83E;
+	text-align: center;
+	color: white;
 }
 </style>
 </head>
 <body>
 	<div class="inbox-body">
 		<div>
-			<p><img src="/ex/resources/img/notice.png"/></p>
+			<p>
+				<img src="/ex/resources/img/notice.png" />
+			</p>
 			<h4 style="margin-left: 30px;">공지사항 게시판 입니다.</h4>
 		</div>
 		<div class="mail-option">
@@ -27,61 +35,32 @@
 					<a data-toggle="dropdown" href="#" class="btn mini all"
 						aria-expanded="false"> All <i class="fa fa-angle-down "></i>
 					</a>
-					<ul class="dropdown-menu">
-						<li><a href="#"> None</a></li>
-						<li><a href="#"> Read</a></li>
-						<li><a href="#"> Unread</a></li>
-					</ul>
 				</div>
 			</div>
 
-			<div class="btn-group">
-				<a data-original-title="Refresh" data-placement="top"
-					data-toggle="dropdown" href="#" class="btn mini tooltips"> <i
-					class=" fa fa-refresh"></i>
-				</a>
-			</div>
-			<div class="btn-group hidden-phone">
-				<a data-toggle="dropdown" href="#" class="btn mini blue"
-					aria-expanded="false"> More <i class="fa fa-angle-down "></i>
-				</a>
-				<ul class="dropdown-menu">
-					<li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-					<li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
-					<li class="divider"></li>
-					<li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-				</ul>
-			</div>
-			<div class="btn-group">
-				<a data-toggle="dropdown" href="#" class="btn mini blue"> Move
-					to <i class="fa fa-angle-down "></i>
-				</a>
-				<ul class="dropdown-menu">
-					<li><a href="#"><i class="fa fa-pencil"></i> Mark as Read</a></li>
-					<li><a href="#"><i class="fa fa-ban"></i> Spam</a></li>
-					<li class="divider"></li>
-					<li><a href="#"><i class="fa fa-trash-o"></i> Delete</a></li>
-				</ul>
-			</div>
-
 			<ul class="unstyled inbox-pagination">
-				<li><span>1-50 of 234</span></li>
-				<li><a class="np-btn" href="#"><i
-						class="fa fa-angle-left  pagination-left"></i></a></li>
-				<li><a class="np-btn" href="#"><i
-						class="fa fa-angle-right pagination-right"></i></a></li>
+				<a data-placement="top" href="write"
+					class="ji btn mini fa fa-angle-right pagination-right"> <i
+					class="ji">글쓰기</i>
+				</a>
 			</ul>
 		</div>
 		<table class="table table-inbox table-hover">
 			<tbody>
-			<tr class=""><th class="jth">no</th><th class="jth">id</th><th class="jth">pw</th><th class="jth">name</th><th class="jth">?</th></tr>
-					<tr class="">
-						<td class="inbox-small-cells">sdf</td>
-						<td class="view-message dont-show">sdf</td>
-						<td class="view-message">sdf</td>
-						<td class="view-message inbox-small-cells">sdf}</td>
-						<td class="view-message text-right">sdf</td>
-					</tr>
+				<tr class="">
+					<th class="jth">번호</th>
+					<th class="jth">작성자</th>
+					<th class="jth">제목</th>
+					<th class="jth">날짜</th>
+					<th class="jth">조회수</th>
+				</tr>
+				<tr class="">
+					<td class="inbox-small-cells">1</td>
+					<td class="view-message dont-show">관리자</td>
+					<td class="view-message">첫 공지사항</td>
+					<td class="view-message inbox-small-cells">2018.07.27</td>
+					<td class="view-message text-right">24</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>
