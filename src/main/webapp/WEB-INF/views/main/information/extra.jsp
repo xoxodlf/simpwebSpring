@@ -60,12 +60,13 @@
 				</colgroup>
 				<tbody>
 					<th class="ttdh" bgcolor="#FFFACD">댓글달기</th>
-					
-					<td class="ttdh">
-					<textarea rows="3" cols="100"></textarea>
-					<td><a id="modify" data-placement="top" href="#" class="tbtn btn"
-					style="background-color: #FFFACD; color: black;">
-					 <iclass="ti">등록</i></a></td>
+				
+
+					<td colspan="3"><textarea class="commentbox" rows="5"
+							cols="100"></textarea> <a id="list" data-placement="top" href="#"
+						class="tbtn btn" style="background-color: #FFFACD; color: black;">
+							<i class="ti">등록</i>
+					</a></td>
 					
 					
 					<tr class="ttdh">
