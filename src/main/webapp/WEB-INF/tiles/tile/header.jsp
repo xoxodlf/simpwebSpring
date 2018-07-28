@@ -14,9 +14,9 @@
 		</div>
 		<ul class="inbox-nav inbox-divider">
 		<li><a href="/ex/main"><i class="fa fa-inbox"></i>메인</a></li>
-			<li><a href="#"><i class="fa fa-inbox"></i>공지사항</a></li>
-			<li><a href="#"><i class="fa fa-envelope-o"></i>월별평가보고서</a></li>
-			<li><a href="#"><i class="fa fa-bookmark-o"></i> 정보공유</a></li>
+			<li><a href="/ex/notice/"><i class="fa fa-inbox"></i>공지사항</a></li>
+			<li><a href="/ex/report/"><i class="fa fa-envelope-o"></i>월별평가보고서</a></li>
+			<li><a href="/ex/information/a"><i class="fa fa-bookmark-o"></i> 정보공유</a></li>
 			<li><a href="/ex/unknown/"><i class=" fa fa-external-link"></i> 익명게시판</a></li>
 		</ul>
 </body>

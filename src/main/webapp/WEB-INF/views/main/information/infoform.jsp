@@ -16,7 +16,7 @@ img {
 <body>
 	<div class="form-body">
 		<div style="padding: 15px 0px 0px 20px">
-			<img src="/ex/resources/img/info.png" width="250px" height="100px">
+			<img src="/ex/resources/img/info.png" width="260px" height="70px">
 			<h4>&nbsp &nbsp 정보공유 게시판입니다. 꿀팁모아 드려요!</h4>
 		</div>
 
