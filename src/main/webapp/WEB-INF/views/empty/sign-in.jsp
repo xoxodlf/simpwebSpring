@@ -72,7 +72,7 @@ body {
     
     <script type="text/javascript">
     $("#signin").on('click', (function() {
-		location.href="/ex/unknown/";
+		location.href="/ex/main";
 	}));
     $("#signup").on('click', (function() {
 		location.href="/ex/user/signUp/";
