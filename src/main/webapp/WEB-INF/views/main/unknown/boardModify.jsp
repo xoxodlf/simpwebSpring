@@ -45,7 +45,7 @@ text-align: right;
 			</p>
 			<h4 style="margin-left: 30px;">익명게시판입니다. 비방은 사절입니다.</h4>
 		</div>
-		<form id="boardForm">
+		<form id="boardForm" method="post">
 			<table class="table table-inbox table-max">
 				<colgroup>
 					<col width="10%" />
@@ -56,23 +56,25 @@ text-align: right;
 				</colgroup>
 				<tr class="t_thr">
 					<td class="tdc">제목 :</td>
-					<td colspan="3"><input class="tinput" type="text" name="title" /></td>
+					<td colspan="3"><input class="tinput" type="text" name="aTitle" value="${unknown.aTitle}"/></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td class="tdc">내용 :</td>
-					<td class="table_content" colspan="3"><textarea class="ta_content"></textarea></td>
-					<td></td>
+					<td class="table_content" colspan="3"><textarea class="ta_content" name ="aContent">${unknown.aContent}</textarea></td>
+					<td><input type="hidden" name="articleNo" value="${unknown.articleNo}"/></td>
 				</tr>
 			</table>
 			<div class="table-max right" style="width:100%; margin-top: 20px;">
-				<a id="modify" data-placement="top" href="#" class="tbtn btn"> <i class="ti">글수정</i></a>
+				<a id="modify" data-placement="top" class="tbtn btn"> <i class="ti">글수정</i></a>
 			</div>
 		</form>
 	</div>
 	<script type="text/javascript">
 	$("#modify").on('click', (function() {
-		location.href="/ex/unknown/";
+		var form = $("#boardForm");
+		form.attr("action","/ex/unknown/update");
+		form.submit();
 	}));
 	</script>
 </body>

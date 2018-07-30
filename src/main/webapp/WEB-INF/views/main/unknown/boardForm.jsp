@@ -45,7 +45,7 @@ text-align: right;
 			</p>
 			<h4 style="margin-left: 30px;">익명게시판입니다. 비방은 사절입니다.</h4>
 		</div>
-		<form id="boardForm">
+		<form id="boardForm" method="post" action="/ex/unknown/insert">
 			<table class="table table-inbox table-max">
 				<colgroup>
 					<col width="10%" />
@@ -56,23 +56,29 @@ text-align: right;
 				</colgroup>
 				<tr class="t_thr">
 					<td class="tdc">제목 :</td>
-					<td colspan="3"><input class="tinput" type="text" name="title" /></td>
+					<td colspan="3"><input id="bTitle" class="tinput" type="text" name="aTitle" /></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td class="tdc">내용 :</td>
-					<td class="table_content" colspan="3"><textarea class="ta_content"></textarea></td>
-					<td></td>
+					<td class="table_content" colspan="3"><textarea name="aContent" class="ta_content"></textarea></td>
+					<td><input type="hidden" name="userNo" value="1"><input type="hidden" name="boardNo" value="1"></td>
 				</tr>
 			</table>
 			<div class="table-max right" style="width:100%; margin-top: 20px;">
-				<a id="write" data-placement="top" href="#" class="tbtn btn"> <i class="ti">글쓰기</i></a>
+				<a id="write" data-placement="top" class="tbtn btn"> <i class="ti">글쓰기</i></a>
 			</div>
 		</form>
 	</div>
 	<script type="text/javascript">
 	$("#write").on('click', (function() {
-		location.href="/ex/unknown/";
+		if($("#bTitle").val()==""){
+			alert("제목은 공백일 수 없습니다.");
+		}else{
+			var form = $("#boardForm");
+			form.submit();
+		}
+		
 	}));
 	</script>
 </body>

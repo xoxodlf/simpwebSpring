@@ -69,21 +69,22 @@ resize: none;
 				</colgroup>
 				<tr class="t_thr">
 					<td class="tdc">제목 :</td>
-					<td colspan="3">제목은 비밀이지롱~</td>
+					<td colspan="3">${unknown.aTitle}</td>
 					<td></td>
 				</tr>
 				<tr>
 					<td class="tdc">내용 :</td>
-					<td class="table_content" colspan="3">내용도 비밀이내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~지렁~~내용도 비밀이내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~내용도 비밀이지렁~~지렁~~</td>
-					<td></td>
+					<td class="table_content" colspan="3">${unknown.aContent}</td>
+					<td><input name="articleNo" type="hidden" value="${unknown.articleNo}"/></td>
 				</tr>
 			</table>
 			<div class="table-max" style="width:100%; margin-top: 20px;">
 			<div class="left" style="width:49.5%; display: inline-block;">
-				<a id="list" data-placement="top" href="#" class="tbtn btn"> <i class="ti">글목록</i></a>
+				<a id="list" data-placement="top" class="tbtn btn"> <i class="ti">글목록</i></a>
 			</div>
 			<div class="right" style="width:50%; display: inline-block;">
-				<a id="modify" data-placement="top" href="#" class="tbtn btn"> <i class="ti">글수정</i></a>
+				<a id="modify" href="/ex/unknown/modify?articleNo=${unknown.articleNo}" data-placement="top" href="#" class="tbtn btn"> <i class="ti">글수정</i></a>
+				<a id="delete" data-placement="top" class="tbtn btn"> <i class="ti">글삭제</i></a>
 			</div>
 			</div>
 			<div class="table-max" style="width:100%; margin-top: 20px;">
@@ -111,11 +112,16 @@ resize: none;
 		</form>
 	</div>
 	<script type="text/javascript">
-	$("#modify").on('click', (function() {
-		location.href="/ex/unknown/modify";
-	}));
+	
 	$("#list").on('click', (function() {
 		location.href="/ex/unknown/";
+	}));
+
+	$("#delete").on('click', (function() {
+		var form = $("#boardForm");
+		form.attr("action","/ex/unknown/delete");
+		form.attr("method","post");
+		form.submit();
 	}));
 	</script>
 </body>
