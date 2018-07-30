@@ -9,7 +9,7 @@ public class UnknownDTO {
 	private int boardNo;
 	private String aTitle;
 	private Date aDate;
-	private int viewCount;
+	private int aViewCount;
 	public int getArticleNo() {
 		return articleNo;
 	}
@@ -46,17 +46,18 @@ public class UnknownDTO {
 	public void setaDate(Date aDate) {
 		this.aDate = aDate;
 	}
-	public int getViewCount() {
-		return viewCount;
+	public int getaViewCount() {
+		return aViewCount;
 	}
-	public void setViewCount(int viewCount) {
-		this.viewCount = viewCount;
+	public void setaViewCount(int aViewCount) {
+		this.aViewCount = aViewCount;
 	}
 	@Override
 	public String toString() {
 		return "UnknownDTO [articleNo=" + articleNo + ", userNo=" + userNo + ", aContent=" + aContent + ", boardNo="
-				+ boardNo + ", aTitle=" + aTitle + ", aDate=" + aDate + ", viewCount=" + viewCount + "]";
+				+ boardNo + ", aTitle=" + aTitle + ", aDate=" + aDate + ", aViewCount=" + aViewCount + "]";
 	}
+	
 	
 	
 }

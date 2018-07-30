@@ -42,4 +42,9 @@ public class UnknownDAOImpl implements UnknownDAO {
 		return session.selectOne(namespace+".detail", articleNo);
 	}
 
+	@Override
+	public void upCount(int articleNo) {
+		session.update(namespace+".upCount", articleNo);
+	}
+
 }

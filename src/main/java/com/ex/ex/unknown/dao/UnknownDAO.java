@@ -10,4 +10,5 @@ public interface UnknownDAO {
 	public void modify(UnknownDTO unknown);
 	public void delete(int articleNo);
 	public UnknownDTO detail(int articleNo);
+	public void upCount(int articleNo);
 }

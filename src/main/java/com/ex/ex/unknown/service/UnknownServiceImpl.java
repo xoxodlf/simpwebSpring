@@ -40,4 +40,9 @@ public class UnknownServiceImpl implements UnknownService {
 		return dao.detail(articleNo);
 	}
 
+	@Override
+	public void upCount(int articleNo) {
+		dao.upCount(articleNo);
+	}
+
 }

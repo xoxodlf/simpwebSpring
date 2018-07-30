@@ -10,7 +10,7 @@
  </insert>
  
 	<select id="listAll" resultType="unknown">
-		select * from article order by articleNo desc
+		select * from article where boardNo=1 order by articleNo desc
 	</select>
 	
 	<update id="modify">
@@ -24,6 +24,10 @@
 	<select id="detail" resultType="unknown">
 		select * from article where articleNo=#{articleNo}
 	</select>
+	
+	<update id="upCount">
+		update article set aViewCount=aViewCount+1 where articleNo=#{articleNo}
+	</update>
 </mapper>
 
 

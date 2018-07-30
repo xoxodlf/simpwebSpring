@@ -47,7 +47,7 @@ public class UnknownController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String boardDetail(Locale locale, Model model,@RequestParam("articleNo") int articleNo) {
 		logger.info("Welcome boardForm! The client locale is {}.", locale);
-		
+		service.upCount(articleNo);
 		UnknownDTO unknown=service.detail(articleNo);
 		model.addAttribute("unknown", unknown);
 		return "main/unknown/boardDetail.lay";

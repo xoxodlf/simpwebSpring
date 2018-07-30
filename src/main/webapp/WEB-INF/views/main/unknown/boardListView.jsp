@@ -59,7 +59,7 @@
 								<td class="ttdh"><a
 									href="/ex/unknown/detail?articleNo=${unknown.articleNo}">${unknown.aTitle}</a></td>
 								<td class="ttdh">${unknown.aDate}</td>
-								<td class="ttdh">${unknown.viewCount}</td>
+								<td class="ttdh">${unknown.aViewCount}</td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
