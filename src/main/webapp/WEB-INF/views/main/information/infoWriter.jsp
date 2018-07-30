@@ -45,7 +45,7 @@
 
 	<script type="text/javascript">
 		$("#list").on('click', (function() {
-			location.href = "/ex/information/a";
+			location.href = "/ex/information/form";
 		}));
 	</script>
 

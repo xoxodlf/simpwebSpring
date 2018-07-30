@@ -63,7 +63,7 @@ img {
 		</div>
 		<script type="text/javascript">
 			$("#first").on('click', (function() {
-				location.href = "/ex/information/b";
+				location.href = "/ex/information/commend";
 			}));
 
 			$("#second").on('click', (function() {
@@ -71,7 +71,7 @@ img {
 			}));
 			
 			$("#write").on('click', (function() {
-				location.href = "/ex/information/c";
+				location.href = "/ex/information/writer";
 			}));
 		</script>
 </body>
