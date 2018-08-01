@@ -58,7 +58,7 @@ public class UnknownController {
 		logger.info("insert");
 		service.insert(unknown);
 		rttr.addFlashAttribute("result_massage", "createsuccess");
-		return "redirect:/unknown/";
+		return "redirect:/unknown/listSearch?searchType=a&keyword=";
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -66,7 +66,7 @@ public class UnknownController {
 		logger.info("update");
 		service.modify(unknown);
 		rttr.addFlashAttribute("result_massage", "updatesuccess");
-		return "redirect:/unknown/";
+		return "redirect:/unknown/listSearch?searchType=a&keyword=";
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -74,7 +74,7 @@ public class UnknownController {
 		logger.info("delete");
 		service.delete(unknown.getArticleNo());
 		rttr.addFlashAttribute("result_massage", "deletesuccess");
-		return "redirect:/unknown/";
+		return "redirect:/unknown/listSearch?searchType=a&keyword=";
 	}
 	
 	@RequestMapping(value = "/listSearch", method = RequestMethod.GET)

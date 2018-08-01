@@ -114,7 +114,7 @@ resize: none;
 	<script type="text/javascript">
 	
 	$("#list").on('click', (function() {
-		location.href="/ex/unknown/";
+		location.href="/ex/unknown/listSearch?searchType=a&keyword=";
 	}));
 
 	$("#delete").on('click', (function() {
