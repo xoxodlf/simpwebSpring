@@ -1,6 +1,8 @@
 package com.ex.ex.unknown.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -45,6 +47,14 @@ public class UnknownDAOImpl implements UnknownDAO {
 	@Override
 	public void upCount(int articleNo) {
 		session.update(namespace+".upCount", articleNo);
+	}
+
+	@Override
+	public List<UnknownDTO> listSearch(String searchType, String keyword) {
+		Map<String, Object> paraMap = new HashMap<String,Object>();
+		paraMap.put("searchType", searchType);
+		paraMap.put("keyword", keyword);
+		return session.selectList(namespace+".listSearch", paraMap);
 	}
 
 }

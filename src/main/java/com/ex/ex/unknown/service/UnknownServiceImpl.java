@@ -45,4 +45,9 @@ public class UnknownServiceImpl implements UnknownService {
 		dao.upCount(articleNo);
 	}
 
+	@Override
+	public List<UnknownDTO> listSearch(String searchType, String keyword) {
+		return dao.listSearch(searchType, keyword);
+	}
+
 }

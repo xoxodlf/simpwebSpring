@@ -77,5 +77,14 @@ public class UnknownController {
 		return "redirect:/unknown/";
 	}
 	
+	@RequestMapping(value = "/listSearch", method = RequestMethod.GET)
+	public String listSearch(@RequestParam("searchType") String searchType,@RequestParam("keyword") String keyword,Model model) {
+		logger.info("listSearch");
+		if(keyword.equals("")) keyword="";
+		List<UnknownDTO> list = service.listSearch(searchType, keyword);
+		model.addAttribute("unknownList", list);
+		return "main/unknown/boardListView.lay";
+	}
+	
 
 }

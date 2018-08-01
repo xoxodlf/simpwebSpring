@@ -11,4 +11,5 @@ public interface UnknownDAO {
 	public void delete(int articleNo);
 	public UnknownDTO detail(int articleNo);
 	public void upCount(int articleNo);
+	public List<UnknownDTO> listSearch(String searchType, String keyword);
 }

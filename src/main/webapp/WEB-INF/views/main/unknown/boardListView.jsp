@@ -66,11 +66,63 @@
 				</c:choose>
 			</tbody>
 		</table>
+		<table style="margin-top: 20px; text-align: center;">
+			<colgroup>
+				<col width="20%" />
+				<col width="10%" />
+				<col width="*" />
+				<col width="10%" />
+				<col width="10%" />
+			</colgroup>
+			<tr>
+				<td></td>
+				<td style="margin-right: 5px;"><select  name="searchType" id="searchType" class="form-control "  style="width:95%;">
+						<option value="a">전체</option>
+						<option value="t">제목</option>
+						<option value="c">내용</option>
+						<option value="tc">제목+내용</option>
+				</select></td>
+				<td><input class="form-control" type="text" id="keyword" name="keyword"/></td>
+				<td><a id="search"  class="tbtn btn" style="width:80%"> <i
+					class="ti">검색</i>
+				</a></td>
+				<td></td>
+			</tr>
+
+		</table>
+
 	</div>
 	<script type="text/javascript">
+		$(document).ready(function(){
+			var getParameters = function (paramName) {
+			    var returnValue;
+			    var url = location.href;
+			    var parameters = (url.slice(url.indexOf('?') + 1, url.length)).split('&');
+			    for (var i = 0; i < parameters.length; i++) {
+			        var varName = parameters[i].split('=')[0];
+			        if (varName.toUpperCase() == paramName.toUpperCase()) {
+			            returnValue = parameters[i].split('=')[1];
+			            return decodeURIComponent(returnValue);
+			        }
+			    }
+			};
+			
+			$("select option[value='"+getParameters("searchType")+"']").attr("selected", true);
+			$("#keyword").val(getParameters("keyword"));
+		
+		});
+		
+		
+
+
+		
 		$("#write").on('click', (function() {
 			location.href = "/ex/unknown/form";
 		}));
+		$("#search").on('click', (function() {
+			location.href = "/ex/unknown/listSearch?searchType="+$("#searchType").val()+"&keyword="+$("#keyword").val();
+		}));
+		
 	</script>
 </body>
 </html>

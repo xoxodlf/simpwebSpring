@@ -4,30 +4,45 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ex.ex.mappers.UnknownMapper">
- <insert id="insert">
-	insert into article(articleNo,userNo,aContent,boardNo,aTitle,aDate,aViewCount)
-	values(ARTICLE_SEQ.nextVal,#{userNo},#{aContent},#{boardNo},#{aTitle},sysdate,0)
- </insert>
- 
+	<insert id="insert">
+		insert into
+		article(articleNo,userNo,aContent,boardNo,aTitle,aDate,aViewCount)
+		values(ARTICLE_SEQ.nextVal,#{userNo},#{aContent},#{boardNo},#{aTitle},sysdate,0)
+	</insert>
+
 	<select id="listAll" resultType="unknown">
-		select * from article where boardNo=1 order by articleNo desc
+		select * from article where
+		boardNo=1 order by articleNo desc
 	</select>
-	
+
 	<update id="modify">
-		update article set aContent=#{aContent},aTitle=#{aTitle} where articleNo=#{articleNo}
+		update article set
+		aContent=#{aContent},aTitle=#{aTitle} where articleNo=#{articleNo}
 	</update>
-	
+
 	<delete id="delete">
 		delete from article where articleNo=#{articleNo}
 	</delete>
-	
+
 	<select id="detail" resultType="unknown">
-		select * from article where articleNo=#{articleNo}
+		select * from article where
+		articleNo=#{articleNo}
 	</select>
-	
+
 	<update id="upCount">
-		update article set aViewCount=aViewCount+1 where articleNo=#{articleNo}
+		update article set aViewCount=aViewCount+1 where
+		articleNo=#{articleNo}
 	</update>
+
+	<select id="listSearch" resultType="unknown">
+	<![CDATA[
+		select * from article where
+		((#{searchType}='a') and (acontent like '%%')) or
+		((#{searchType}='t') and (atitle like concat(concat('%',#{keyword}),'%'))) or
+		((#{searchType}='c') and (acontent like concat(concat('%',#{keyword}),'%'))) or
+		((#{searchType}='tc') and ((acontent like concat(concat('%',#{keyword}),'%')) or (atitle like concat(concat('%',#{keyword}),'%'))))
+	]]>
+	</select>
 </mapper>
 
 
