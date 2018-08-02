@@ -35,14 +35,22 @@
 	</update>
 
 	<select id="listSearch" resultType="unknown">
-	<![CDATA[
 		select * from article where
-		((boardNo=1) and (#{searchType}='a') and (acontent like '%%')) or
-		((boardNo=1) and (#{searchType}='t') and (atitle like concat(concat('%',#{keyword}),'%'))) or
-		((boardNo=1) and (#{searchType}='c') and (acontent like concat(concat('%',#{keyword}),'%'))) or
-		((boardNo=1) and (#{searchType}='tc') and ((acontent like concat(concat('%',#{keyword}),'%')) or (atitle like concat(concat('%',#{keyword}),'%'))))
+		boardNo=1 and
+		<if test="searchType=='a'.toString()">
+		acontent like '%%'
+		</if>
+		<if test="searchType=='t'.toString()">
+		atitle like '%${keyword}%'
+		</if>
+		<if test="searchType=='c'.toString()">
+		acontent like '%${keyword}%'
+		</if>
+		<if test="searchType=='tc'.toString()">
+		(acontent like '%${keyword}%' or atitle like '%${keyword}%')
+		</if>
 		order by articleNo desc
-	]]>
+	
 	</select>
 </mapper>
 
