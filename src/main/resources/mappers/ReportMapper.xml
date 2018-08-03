@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.ex.ex.mappers.ReportMapper">
+<insert id = "insert">
+insert into article(articleNo,userNo,aContent,boardNo,aTitle,aDate,aViewCount)
+values(ARTICLE_SEQ.nextVal,1,#{aContent},3,#{aTitle},sysdate,0)
+</insert>
+
+<select id="article" resultType="report">
+select * from article where articleNo = #{articleNo}
+</select>
+
+<select id="listAll" resultType="report">
+select * from article where boardNo = 3 order by articleNo desc
+</select>
+
+<select id="writer" resultType="java.lang.String">
+select uName from "user" where userNo = #{userNo}
+</select>
+
+<update id="modify">
+update article set aContent = #{aContent},aTitle = #{aTitle} where articleNo = #{articleNo}
+</update>
+
+<delete id="delete">
+delete from article where articleNo = #{articleNo}
+</delete>
+
+<update id="count">
+update article set aViewCount = aViewCount + 1 where articleNo = #{articleNo}
+</update>
+
+<select id="searchList" resultType="report">
+select * from article where boardNo = 3 and
+<if test = "searchType=='all'.toString()">
+aContent like '%%'
+</if>
+<if test = "searchType=='title'.toString()">
+aTitle like '%${keyword}%'
+</if>
+<if test = "searchType=='content'.toString()">
+aContent like '${keyword}'
+</if>
+<if test = "searchType=='writer'.toString()">
+userNo = (select userNo from "user" where uName = '${keyword}')
+</if>
+<if test = "searchType=='tAndc'.toString()">
+(aContent like '${keyword}' or aTitle like '${keyword}')
+</if>
+order by articleNo desc
+</select>
+</mapper>

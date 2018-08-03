@@ -58,7 +58,7 @@ resize: none;
 			</p>
 			<h4 style="margin-left: 30px;">월별 평가 보고서 게시판 입니다.</h4>
 		</div>
-		<form id="boardForm">
+		<form id="reportForm">
 			<table class="table table-inbox table-max">
 				<colgroup>
 					<col width="10%" />
@@ -69,12 +69,12 @@ resize: none;
 				</colgroup>
 				<tr class="t_thr" style="background-color: #8B32C7">
 					<td class="tdc">제목 :</td>
-					<td colspan="3">홍지희 바보 ㅎ</td>
-					<td></td>
+					<td colspan="3">${report.aTitle }</td>
+					<td><input name="articleNo" type="hidden" value="${report.articleNo}"/></td>
 				</tr>
 				<tr>
 					<td class="tdc">내용 :</td>
-					<td class="table_content" colspan="3">홍지희는 바보입니당 ㅎㅎㅎㅎㅎ 혜은이도 바보같아요 ㅎㅎㅎㅎㅎ</td>
+					<td class="table_content" colspan="3">${report.aContent }</td>
 					<td></td>
 				</tr>
 			</table>
@@ -83,7 +83,8 @@ resize: none;
 				<a id="list" data-placement="top" href="#" class="tbtn btn" style="background-color: #8B32C7"> <i class="ti">글목록</i></a>
 			</div>
 			<div class="right" style="width:50%; display: inline-block;">
-				<a id="modify" data-placement="top" href="#" class="tbtn btn" style="background-color: #8B32C7"> <i class="ti">글수정</i></a>
+				<a id="modify" data-placement="top" href="/ex/report/modify?articleNo=${report.articleNo}" class="tbtn btn" style="background-color: #8B32C7"> <i class="ti">글수정</i></a>
+				<a id="delete" data-placement="top" class="tbtn btn" style="background-color: #8B32C7""> <i class="ti">글삭제</i></a>
 			</div>
 			</div>
 			<div class="table-max" style="width:100%; margin-top: 20px;">
@@ -111,11 +112,15 @@ resize: none;
 		</form>
 	</div>
 	<script type="text/javascript">
-	$("#modify").on('click', (function() {
-		location.href="/ex/report/modify";
-	}));
 	$("#list").on('click', (function() {
 		location.href="/ex/report/";
+	}));
+	
+	$("#delete").on('click',(function(){
+		var form = $("#reportForm");
+		form.attr("action","/ex/report/delete");
+		form.attr("method","post");
+		form.submit();
 	}));
 	</script>
 </body>

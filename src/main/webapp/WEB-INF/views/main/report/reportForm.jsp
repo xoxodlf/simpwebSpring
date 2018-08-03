@@ -45,7 +45,7 @@ text-align: right;
 			</p>
 			<h4 style="margin-left: 30px;">월별 평가 보고서 게시판 입니다.</h4>
 		</div>
-		<form id="boardForm">
+		<form id="reportForm" action = "/ex/report/reportWriting" method = "GET">
 			<table class="table table-inbox table-max">
 				<colgroup>
 					<col width="10%" />
@@ -56,23 +56,31 @@ text-align: right;
 				</colgroup>
 				<tr class="t_thr" style="background-color: #8B32C7">
 					<td class="tdc">제목 :</td>
-					<td colspan="3"><input class="tinput" type="text" name="title" /></td>
+					<td colspan="3"><input class="tinput" id="reportT" type="text" name="aTitle" /></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td class="tdc">내용 :</td>
-					<td class="table_content" colspan="3"><textarea class="ta_content"></textarea></td>
+					<td class="table_content" colspan="3"><textarea class="ta_content" id="reportC" name="aContent"></textarea></td>
 					<td></td>
 				</tr>
 			</table>
 			<div class="table-max right" style="width:100%; margin-top: 20px;">
-				<a id="write" data-placement="top" href="#" class="tbtn btn" style="background-color: #8B32C7"> <i class="ti">글쓰기</i></a>
+				<input type="submit" value="글쓰기" data-placement="top" href="#" class="tbtn btn ti" style="background-color: #8B32C7"/>
 			</div>
 		</form>
 	</div>
 	<script type="text/javascript">
 	$("#write").on('click', (function() {
-		location.href="/ex/report/";
+		if($("#aTitle").val() == ""){
+			alert("제목을 입력하세요!");
+		}else if($("#reportC").val() == ""){
+			alert("내용을 입력하세요!");
+		}
+		else{
+			var form = $("#reportForm");
+			form.submit();
+		}
 	}));
 	</script>
 </body>

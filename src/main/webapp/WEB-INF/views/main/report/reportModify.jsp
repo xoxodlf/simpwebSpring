@@ -45,7 +45,7 @@ text-align: right;
 			</p>
 			<h4 style="margin-left: 30px;">월별 평가 보고서 게시판 입니다.</h4>
 		</div>
-		<form id="boardForm">
+		<form id="reportForm">
 			<table class="table table-inbox table-max">
 				<colgroup>
 					<col width="10%" />
@@ -56,12 +56,12 @@ text-align: right;
 				</colgroup>
 				<tr class="t_thr" style="background-color: #8B32C7">
 					<td class="tdc">제목 :</td>
-					<td colspan="3"><input class="tinput" type="text" name="title" /></td>
-					<td></td>
+					<td colspan="3"><input class="tinput" type="text" name="aTitle" value="${report.aTitle }"/></td>
+					<td><input name="articleNo" type="hidden" value="${report.articleNo}"/></td>
 				</tr>
 				<tr>
 					<td class="tdc">내용 :</td>
-					<td class="table_content" colspan="3"><textarea class="ta_content"></textarea></td>
+					<td class="table_content" colspan="3"><textarea class="ta_content" name="aContent">${report.aContent }</textarea></td>
 					<td></td>
 				</tr>
 			</table>
@@ -72,7 +72,10 @@ text-align: right;
 	</div>
 	<script type="text/javascript">
 	$("#modify").on('click', (function() {
-		location.href="/ex/report/";
+		var form = $("#reportForm");
+		form.attr("action","/ex/report/modifying");
+		form.attr("method","post");
+		form.submit();
 	}));
 	</script>
 </body>
