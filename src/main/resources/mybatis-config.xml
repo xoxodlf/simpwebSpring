@@ -7,6 +7,9 @@
 		<typeAlias type="com.ex.ex.test.domain.UserDTO" alias="test" />
 		<typeAlias type="com.ex.ex.test.domain.ArticleDTO" alias="article"/>
 		<typeAlias type="com.ex.ex.unknown.domain.UnknownDTO" alias="unknown"/>
+		<typeAlias type="com.ex.ex.notice.domain.NoticeDTO" alias="notice" />
+		<typeAlias type="com.ex.ex.report.domain.ReportDTO" alias="report" />
+		<typeAlias type="com.ex.ex.notice.domain.NoticeUserDTO" alias="noticeuser" />
 	</typeAliases>
 </configuration>
 

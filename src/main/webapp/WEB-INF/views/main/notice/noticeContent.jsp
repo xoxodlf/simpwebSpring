@@ -11,7 +11,7 @@
 	color: black;
 }
 
-.ji_color {
+.ji {
 	color: green;
 }
 
@@ -77,7 +77,7 @@ td {
 			</p>
 			<h4 style="margin-left: 30px;">공지사항 입니다.</h4>
 		</div>
-		<form id="boardForm">
+		<form id="NoticeContent">
 			<table class="table table-inbox table-max">
 				<colgroup>
 					<col width="10%" />
@@ -88,23 +88,30 @@ td {
 				</colgroup>
 				<tr class="j_thr">
 					<td class="jdc">제목 :</td>
-					<td colspan="3">공지사항 입니다</td>
+					<td colspan="3">${notice.aTitle}</td>
 					<td></td>
 				</tr>
 				<tr>
 					<td class="tdc">내용 :</td>
-					<td class="table_content" colspan="3">공지사항 입니다 언제 끝나야 하는 걸까ㅠㅠㅠ</td>
-					<td></td>
+					<td class="table_content" colspan="3">${notice.aContent}</td>
+					<td><input name="articleNo" type="hidden"
+						value="${notice.articleNo}" /></td>
 				</tr>
 			</table>
 			<div class="table-max" style="width: 100%; margin-top: 20px;">
 				<div class="left" style="width: 49.5%; display: inline-block;">
-					<a id="list" data-placement="top" href="/ex/notice/" class="ji "> <i
-						class="ji_color">목록 가기</i></a>
+					<a id="list" data-placement="top" href="/ex/notice/" class="ji ">
+						<i class="ji_color">목록 가기</i>
+					</a>
 				</div>
 				<div class="right" style="width: 50%; display: inline-block;">
-					<a id="modify" data-placement="top" href="/ex/notice/modify" class="ji "> <i
+					<a id="modify" data-placement="top"
+						href="/ex/notice/modify?articleNo=${notice.articleNo}"
+						class="ji btn mini fa fa-angle-right pagination-right "> <i
 						class="ji_color">수정 하기</i>
+					</a> <a id="delete" data-placement="top"
+						class="ji btn mini fa fa-angle-right pagination-right "> <i
+						class="ji_color">삭제 하기</i>
 					</a>
 				</div>
 			</div>
@@ -136,10 +143,16 @@ td {
 	</div>
 	<script type="text/javascript">
 		$("#modify").on('click', (function() {
-			location.href = "/ex/unknown/modify";
+			location.href = "/ex/notice/modify";
 		}));
 		$("#list").on('click', (function() {
-			location.href = "/ex/unknown/";
+			location.href = "/ex/notice/search?searchOption=a&searchWord=";
+		}));
+		$("#delete").on('click', (function() {
+			var form = $("#NoticeContent");
+			form.attr("action", "/ex/notice/delete");
+			form.attr("method", "post");
+			form.submit();
 		}));
 	</script>
 </body>
