@@ -45,7 +45,7 @@ aTitle like '%${keyword}%'
 aContent like '${keyword}'
 </if>
 <if test = "searchType=='writer'.toString()">
-userNo = (select userNo from "user" where uName = '${keyword}')
+userNo = (select userNo from users where uName = '${keyword}')
 </if>
 <if test = "searchType=='tAndc'.toString()">
 (aContent like '${keyword}' or aTitle like '${keyword}')
