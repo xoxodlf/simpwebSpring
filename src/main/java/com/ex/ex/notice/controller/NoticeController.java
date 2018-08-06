@@ -1,100 +1,97 @@
 package com.ex.ex.notice.controller;
 
+import java.util.List;
+import java.util.Locale;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.ex.ex.notice.domain.NoticeDTO;
+import com.ex.ex.notice.domain.NoticeUserDTO;
+import com.ex.ex.notice.service.NoticeService;
 
 @Controller
 @RequestMapping("/notice")
 public class NoticeController {
+	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 
-	Service service;
+	@Inject
+	NoticeService service;
 
-	@RequestMapping("/")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String list(Model model) {
-		System.out.println("notice()");
-
-		// service = new ListService();
-		// service.execute(model);
-
+		logger.info("noticeController");
+		List<NoticeDTO> list = service.listAll();
+		for (NoticeDTO dto : list) {
+			NoticeUserDTO user = service.getuName(dto.getUserNo());
+			dto.setUserName(user.getuName());
+		}
+		model.addAttribute("noticeList", list);
 		return "main/notice/noticeView.lay";
 	}
 
-	@RequestMapping("/write_view")
-	public String write_view(Model model) {
-		System.out.println("write_view()");
-
-		return "write_view";
-	}
-
-	@RequestMapping("/write")
+	@RequestMapping(value = "/write", method = RequestMethod.GET)
 	public String write(HttpServletRequest request, Model model) {
-		System.out.println("write()");
-		model.addAttribute("request", request);
-		// service = new WriteService();
-		// service.execute(model);
-
 		return "main/notice/noticeWrite.lay";
 	}
 
-	@RequestMapping("/content")
-	public String content_view(HttpServletRequest request, Model model) {
-		System.out.println("content_view()");
-
-		model.addAttribute("request", request);
-		// service = new ContentService();
-		// service.execute(model);
-
+	@RequestMapping(value = "/content", method = RequestMethod.GET)
+	public String content_view(Locale locale, Model model, @RequestParam("articleNo") int articleNo) {
+		logger.info("noticeController");
+		service.upCount(articleNo);
+		NoticeDTO notice = service.detail(articleNo);
+		model.addAttribute("notice", notice);
 		return "main/notice/noticeContent.lay";
 	}
 
-	// method = RequestMethod.POST, value =
-	@RequestMapping("/modify")
-	public String modify(HttpServletRequest request, Model model) {
-		System.out.println("modify()");
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public String insert(NoticeDTO notice) {
+		logger.info("insert");
+		service.insert(notice);
+		return "redirect:/notice/";
+	}
 
-		model.addAttribute("request", request);
-		// service = new ModifyService();
-		// service.execute(model);
-
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public String modify(Locale locale, Model model, @RequestParam("articleNo") int articleNo) {
+		logger.info("modify");
+		NoticeDTO notice = service.detail(articleNo);
+		model.addAttribute("notice", notice);
 		return "main/notice/noticeModify.lay";
 	}
 
-	@RequestMapping("/reply_view")
-	public String reply_view(HttpServletRequest request, Model model) {
-		System.out.println("reply_view()");
-
-		model.addAttribute("request", request);
-		// service = new ReplyViewService();
-		// service.execute(model);
-
-		return "reply_view";
-
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(NoticeDTO notice, RedirectAttributes rttr) {
+		logger.info("update");
+		service.modify(notice);
+		return "redirect:/notice/";
 	}
 
-	@RequestMapping("/reply")
-	public String reply(HttpServletRequest request, Model model) {
-		System.out.println("reply()");
-
-		model.addAttribute("request", request);
-		// service = new ReplyService();
-		// service.execute(model);
-		return "redirect:notice";
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public String delete(NoticeDTO notice) {
+		logger.info("delete");
+		service.delete(notice.getArticleNo());
+		return "redirect:/notice/";
 	}
 
-	@RequestMapping("/delete")
-	public String delete(HttpServletRequest request, Model model) {
-		System.out.println("delete()");
-
-		model.addAttribute("request", request);
-		// service = new DeleteService();
-		// service.execute(model);
-
-		return "redirect:notice";
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String search(@RequestParam("searchOption") String searchOption,
+			@RequestParam("searchWord") String searchWord, Model model) {
+		logger.info("search");
+		if (searchWord.equals(""))
+			searchWord = "";
+		List<NoticeDTO> list = service.search(searchOption, searchWord);
+		
+		model.addAttribute("noticeList", list);
+		return "main/notice/noticeView.lay";
 	}
 
 }

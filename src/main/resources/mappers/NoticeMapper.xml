@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ex.ex.mappers.NoticeMapper">
+	<insert id="insert">
+		insert into
+		article(articleNo,userNo,aContent,boardNo,aTitle,aDate,aViewCount)
+		values(ARTICLE_SEQ.nextVal,#{userNo},#{aContent},#{boardNo},#{aTitle},sysdate,0)
+	</insert>
+
+	<select id="listAll" resultType="notice">
+		select * from article where
+		boardNo=4 order by articleNo desc
+	</select>
+
+	<select id="getuName" resultType="noticeuser">
+		select uName from users where
+		userNo=#{userNo}
+	</select>
+
+	<select id="detail" resultType="notice">
+		select * from article where
+		articleNo=#{articleNo}
+	</select>
+
+	<update id="upCount">
+		update article set aViewCount=aViewCount+1 where
+		articleNo=#{articleNo}
+	</update>
+
+	<update id="modify">
+		update article set
+		aContent=#{aContent},aTitle=#{aTitle} where
+		articleNo=#{articleNo}
+	</update>
+
+	<delete id="delete">
+		delete from article where articleNo=#{articleNo}
+	</delete>
+
+	<select id="search" resultType="notice">
+		select a.* , u.uname as userName from article a  left outer join users u on a.userNo=u.userNo where boardNo=4 and 
+		<if test="searchOption=='a'.toString()">
+			acontent like '%%'
+		</if>
+		<if test="searchOption=='n'.toString()">
+			u.uname = #{searchWord} </if>
+		<if test="searchOption=='t'.toString()">
+			atitle like '%${searchWord}%' </if>
+		<if test="searchOption=='c'.toString()">
+			acontent like '%${searchWord}%' </if>
+		<if test="searchOption=='tc'.toString()">
+			(atitle like '%${searchWord}%' or acontent like '%${searchWord}%')</if>
+		order by articleNo desc
+	</select>
+
+</mapper>

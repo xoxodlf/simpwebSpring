@@ -63,7 +63,7 @@
 			</p>
 			<h4 style="margin-left: 30px;">공지사항 입니다.</h4>
 		</div>
-		<form id="boardForm">
+		<form id="Modify" method="post">
 			<table class="table table-inbox table-max">
 				<colgroup>
 					<col width="10%" />
@@ -74,18 +74,19 @@
 				</colgroup>
 				<tr class="j_thr">
 					<td class="jdc">제목 :</td>
-					<td class="jdc" colspan="3"><input class="tinput" type="text" name="title" /></td>
-					<td class="jdc"></td>
+					<td class="jdc" colspan="3"><input class="tinput" type="text"
+						name="aTitle" value="${notice.aTitle}" /></td>
 				</tr>
 				<tr>
 					<td class="tdc">내용 :</td>
 					<td class="table_content" colspan="3"><textarea
-							class="ta_content"></textarea></td>
-					<td></td>
+							class="ta_content" name="aContent" >${notice.aContent}</textarea></td>
+					<td><input type="hidden" name="articleNo"
+						value="${notice.articleNo}" /></td>
 				</tr>
 			</table>
 			<div class="table-max right" style="width: 100%; margin-top: 20px;">
-				<a id="modify" data-placement="top" href="#"
+				<a id="modify" data-placement="top"
 					class="ji btn mini fa fa-angle-right pagination-right "> <i
 					class="ti">수정 하기</i></a>
 			</div>
@@ -93,7 +94,9 @@
 	</div>
 	<script type="text/javascript">
 		$("#modify").on('click', (function() {
-			location.href = "/ex/notice/";
+			var form = $("#Modify");
+			form.attr("action", "/ex/notice/update");
+			form.submit();
 		}));
 	</script>
 </body>
