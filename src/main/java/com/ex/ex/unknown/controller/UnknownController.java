@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ex.ex.unknown.domain.UnknownDTO;
+import com.ex.ex.unknown.domain.UnknownReplyDTO;
+import com.ex.ex.unknown.service.UnknownReplyService;
 import com.ex.ex.unknown.service.UnknownService;
 
 @Controller
@@ -23,7 +25,9 @@ public class UnknownController {
 	private static final Logger logger = LoggerFactory.getLogger(UnknownController.class);
 	
 	@Inject
-	UnknownService service; 
+	UnknownService service;
+	@Inject
+	UnknownReplyService rService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String boardList(Locale locale, Model model) {
@@ -48,8 +52,10 @@ public class UnknownController {
 	public String boardDetail(Locale locale, Model model,@RequestParam("articleNo") int articleNo) {
 		logger.info("Welcome boardForm! The client locale is {}.", locale);
 		service.upCount(articleNo);
+		List<UnknownReplyDTO> list = rService.listAll(articleNo);
 		UnknownDTO unknown=service.detail(articleNo);
 		model.addAttribute("unknown", unknown);
+		model.addAttribute("replyList", list);
 		return "main/unknown/boardDetail.lay";
 	}
 	
@@ -84,6 +90,15 @@ public class UnknownController {
 		List<UnknownDTO> list = service.listSearch(searchType, keyword);
 		model.addAttribute("unknownList", list);
 		return "main/unknown/boardListView.lay";
+	}
+	
+	@RequestMapping(value = "/insertReply", method = RequestMethod.POST)
+	public String insertReply(UnknownReplyDTO reply,RedirectAttributes rttr) {
+		logger.info("insertReply");
+		logger.info(reply.toString());
+		rService.insert(reply);
+		rttr.addFlashAttribute("result_massage", "createsuccess");
+		return "redirect:/unknown/detail?articleNo="+reply.getArticleNo();
 	}
 	
 
