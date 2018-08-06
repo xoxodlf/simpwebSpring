@@ -50,4 +50,19 @@ public class UnknownServiceImpl implements UnknownService {
 		return dao.listSearch(searchType, keyword);
 	}
 
+	@Override
+	public void updateOrder(int group, int order) {
+		dao.updateOrder(group, order);
+	}
+
+	@Override
+	public void insertComment(UnknownDTO unknown) {
+		dao.insertComment(unknown);
+	}
+
+	@Override
+	public void deleteModify(int articleNo) {
+		dao.deleteModify(articleNo);
+	}
+
 }

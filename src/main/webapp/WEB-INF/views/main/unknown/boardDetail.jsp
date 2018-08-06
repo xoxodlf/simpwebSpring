@@ -93,7 +93,8 @@ td {
 					<a id="modify"
 						href="/ex/unknown/modify?articleNo=${unknown.articleNo}"
 						class="tbtn btn"> <i class="ti">글수정</i></a> <a id="delete"
-						class="tbtn btn"> <i class="ti">글삭제</i></a>
+						class="tbtn btn"> <i class="ti">글삭제</i></a><a id="writeC"
+						href="/ex/unknown/writeComment?articleNo=${unknown.articleNo}" class="tbtn btn" style="margin-left: 5px;"> <i class="ti">답글달기</i></a>
 				</div>
 			</div>
 		</form>
@@ -109,10 +110,10 @@ td {
 					</colgroup>
 					<tr>
 						<td class="tdc t_thr" style="vertical-align: middle;">댓글달기</td>
-						<td colspan="3"><textarea class="commentbox" name="cContent"></textarea></td>
+						<td colspan="3"><textarea id="ccontent" class="commentbox" name="cContent"></textarea></td>
 						<td><a id="replyAdd" class="tbtn btn"> <i class="ti">등록</i></a><input
 							type="hidden" name="userNo" value="1" /><input type="hidden"
-							name="articleNo" value="${unknown.articleNo}" /></td>
+							name="articleNo" value="${unknown.articleNo}"/></td>
 					</tr>
 					<c:choose>
 						<c:when test="${empty replyList }">
@@ -147,10 +148,14 @@ td {
 		}));
 
 		$("#replyAdd").on('click', (function() {
-			var form = $("#replyForm");
-			form.attr("action", "/ex/unknown/insertReply");
-			form.attr("method", "post");
-			form.submit();
+			if($("#ccontent").val()==""){
+				alert("댓글 내용은 공백일 수 없습니다.");
+			}else{
+				var form = $("#replyForm");
+				form.attr("action", "/ex/unknown/insertReply");
+				form.attr("method", "post");
+				form.submit();
+			}
 		}));
 	</script>
 </body>

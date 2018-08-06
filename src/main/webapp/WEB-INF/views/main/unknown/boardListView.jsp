@@ -46,13 +46,24 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${unknownList}" var="unknown">
+						<c:choose>
+						<c:when test="${unknown.isDelete==0}">
 						<tr class="">
-							<td class="ttdh">${unknown.articleNo}</td>
-							<td class="ttdh"><a
-								href="/ex/unknown/detail?articleNo=${unknown.articleNo}">${unknown.aTitle}</a></td>
+							<td class="ttdh"><c:if test="${unknown.depth==0}">${unknown.articleNo}</c:if></td>
+							<td class=""><a href="/ex/unknown/detail?articleNo=${unknown.articleNo}" ><c:if test="${unknown.depth!=0}"><span style="padding-right:10px;padding-left: calc(12*${unknown.depth}px);"><img src="/ex/resources/img/arrow.png" /></span></c:if>${unknown.aTitle}</a></td>
 							<td class="ttdh">${unknown.aDate}</td>
 							<td class="ttdh">${unknown.aViewCount}</td>
 						</tr>
+						</c:when>
+						<c:otherwise>
+						<tr class="">
+							<td class="ttdh">${unknown.articleNo}</td>
+							<td class=""><c:if test="${unknown.depth!=0}"><span style="padding-right:10px;padding-left: calc(12*${unknown.depth}px);"><img src="/ex/resources/img/arrow.png" /></span></c:if>이 게시물은 삭제된 게시물입니다.</td>
+							<td class="ttdh">${unknown.aDate}</td>
+							<td class="ttdh">${unknown.aViewCount}</td>
+						</tr>
+						</c:otherwise>
+						</c:choose>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>

@@ -57,4 +57,22 @@ public class UnknownDAOImpl implements UnknownDAO {
 		return session.selectList(namespace+".listSearch", paraMap);
 	}
 
+	@Override
+	public void updateOrder(int group, int order) {
+		Map<String, Object> paraMap = new HashMap<String,Object>();
+		paraMap.put("group", group);
+		paraMap.put("order", order);
+		session.update(namespace+".updateOrder", paraMap);
+	}
+
+	@Override
+	public void insertComment(UnknownDTO unknown) {
+		session.insert(namespace+".insertComment", unknown);
+	}
+
+	@Override
+	public void deleteModify(int articleNo) {
+		session.update(namespace+".deleteModify", articleNo);
+	}
+
 }

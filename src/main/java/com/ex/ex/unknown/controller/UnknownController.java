@@ -48,6 +48,15 @@ public class UnknownController {
 		model.addAttribute("unknown", unknown);
 		return "main/unknown/boardModify.lay";
 	}
+	
+	@RequestMapping(value = "/writeComment", method = RequestMethod.GET)
+	public String writeComment(Locale locale, Model model,@RequestParam("articleNo") int articleNo) {
+		logger.info("Welcome writeComment! The client locale is {}.", locale);
+		UnknownDTO unknown=service.detail(articleNo);
+		model.addAttribute("unknown", unknown);
+		return "main/unknown/boardComment.lay";
+	}
+	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String boardDetail(Locale locale, Model model,@RequestParam("articleNo") int articleNo) {
 		logger.info("Welcome boardForm! The client locale is {}.", locale);
@@ -67,6 +76,16 @@ public class UnknownController {
 		return "redirect:/unknown/listSearch?searchType=a&keyword=";
 	}
 	
+	@RequestMapping(value = "/insertComment", method = RequestMethod.POST)
+	public String insertComment(UnknownDTO unknown,RedirectAttributes rttr) {
+		logger.info("insertComment");
+		service.updateOrder(unknown.getGroup(), unknown.getOrder());
+		service.insertComment(unknown);
+		rttr.addFlashAttribute("result_massage", "createsuccess");
+		return "redirect:/unknown/listSearch?searchType=a&keyword=";
+	}
+	
+	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(UnknownDTO unknown,RedirectAttributes rttr) {
 		logger.info("update");
@@ -78,7 +97,7 @@ public class UnknownController {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(UnknownDTO unknown,RedirectAttributes rttr) {
 		logger.info("delete");
-		service.delete(unknown.getArticleNo());
+		service.deleteModify(unknown.getArticleNo());
 		rttr.addFlashAttribute("result_massage", "deletesuccess");
 		return "redirect:/unknown/listSearch?searchType=a&keyword=";
 	}
@@ -88,6 +107,11 @@ public class UnknownController {
 		logger.info("listSearch");
 		if(keyword.equals("")) keyword="";
 		List<UnknownDTO> list = service.listSearch(searchType, keyword);
+		
+		for(UnknownDTO unknown:list) {
+			unknown.setaTitle(unknown.getaTitle()+" ["+unknown.getReplyCnt()+"]");
+		}
+		
 		model.addAttribute("unknownList", list);
 		return "main/unknown/boardListView.lay";
 	}

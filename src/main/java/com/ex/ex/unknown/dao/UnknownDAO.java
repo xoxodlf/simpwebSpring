@@ -12,4 +12,7 @@ public interface UnknownDAO {
 	public UnknownDTO detail(int articleNo);
 	public void upCount(int articleNo);
 	public List<UnknownDTO> listSearch(String searchType, String keyword);
+	public void updateOrder(int group,int order);
+	public void insertComment(UnknownDTO unknown);
+	public void deleteModify(int articleNo);
 }

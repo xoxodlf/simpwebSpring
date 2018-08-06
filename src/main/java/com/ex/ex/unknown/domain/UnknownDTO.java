@@ -10,6 +10,12 @@ public class UnknownDTO {
 	private String aTitle;
 	private Date aDate;
 	private int aViewCount;
+	private int replyCnt;
+	private int group;
+	private int depth;
+	private int order;
+	private int isDelete;
+	
 	public int getArticleNo() {
 		return articleNo;
 	}
@@ -52,11 +58,46 @@ public class UnknownDTO {
 	public void setaViewCount(int aViewCount) {
 		this.aViewCount = aViewCount;
 	}
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
+	
+	
+	public int getGroup() {
+		return group;
+	}
+	public void setGroup(int group) {
+		this.group = group;
+	}
+	public int getDepth() {
+		return depth;
+	}
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+	public int getOrder() {
+		return order;
+	}
+	public void setOrder(int order) {
+		this.order = order;
+	}
+	public int getIsDelete() {
+		return isDelete;
+	}
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
+	}
 	@Override
 	public String toString() {
 		return "UnknownDTO [articleNo=" + articleNo + ", userNo=" + userNo + ", aContent=" + aContent + ", boardNo="
-				+ boardNo + ", aTitle=" + aTitle + ", aDate=" + aDate + ", aViewCount=" + aViewCount + "]";
+				+ boardNo + ", aTitle=" + aTitle + ", aDate=" + aDate + ", aViewCount=" + aViewCount + ", replyCnt="
+				+ replyCnt + ", group=" + group + ", depth=" + depth + ", order=" + order + ", isDelete=" + isDelete
+				+ "]";
 	}
+	
 	
 	
 	
