@@ -11,8 +11,9 @@ public interface UnknownService {
 	public void delete(int articleNo);
 	public UnknownDTO detail(int articleNo);
 	public void upCount(int articleNo);
-	public List<UnknownDTO> listSearch(String searchType, String keyword);
+	public List<UnknownDTO> listSearch(String searchType, String keyword, int startIndex,int pageSize);
 	public void updateOrder(int group,int order);
 	public void insertComment(UnknownDTO unknown);
 	public void deleteModify(int articleNo);
+	public int cntAtricle(String searchType, String keyword);
 }

@@ -50,6 +50,8 @@
 	</update>
 
 	<select id="listSearch" resultType="unknown">
+		select * from (
+		select rownum rn,r.* from(
 		select * from (select a.*,nvl(replyCount,0) as replyCnt from article a left outer join (select count(*) as replyCount,articleNo from comments group by articleNo) r on a.articleNo=r.articleNo) where
 		boardNo=1 and
 		<if test="searchType=='a'.toString()">
@@ -65,8 +67,30 @@
 		(acontent like '%${keyword}%' or atitle like '%${keyword}%')
 		</if>
 		order by "group" desc, "order" asc
-	
+		) r
+		<![CDATA[ 
+		) where rn>#{startIndex} and rn<=#{startIndex}+#{pageSize}
+		]]>
 	</select>
+	
+	<select id="cntArticle" resultType="int">
+		select nvl(count(*),0) from (select a.*,nvl(replyCount,0) as replyCnt from article a left outer join (select count(*) as replyCount,articleNo from comments group by articleNo) r on a.articleNo=r.articleNo) where
+		boardNo=1 and
+		<if test="searchType=='a'.toString()">
+		acontent like '%%'
+		</if>
+		<if test="searchType=='t'.toString()">
+		atitle like '%${keyword}%'
+		</if>
+		<if test="searchType=='c'.toString()">
+		acontent like '%${keyword}%'
+		</if>
+		<if test="searchType=='tc'.toString()">
+		(acontent like '%${keyword}%' or atitle like '%${keyword}%')
+		</if>
+	</select>
+	
+	
 </mapper>
 
 

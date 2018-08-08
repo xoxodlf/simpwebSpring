@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ex.ex.unknown.domain.UnknownDTO;
 import com.ex.ex.unknown.domain.UnknownReplyDTO;
+import com.ex.ex.unknown.service.UnknownPagination;
 import com.ex.ex.unknown.service.UnknownReplyService;
 import com.ex.ex.unknown.service.UnknownService;
 
@@ -103,15 +104,16 @@ public class UnknownController {
 	}
 	
 	@RequestMapping(value = "/listSearch", method = RequestMethod.GET)
-	public String listSearch(@RequestParam("searchType") String searchType,@RequestParam("keyword") String keyword,Model model) {
+	public String listSearch(@RequestParam("searchType") String searchType,@RequestParam("keyword") String keyword,@RequestParam(defaultValue="1") int curPage,Model model) {
 		logger.info("listSearch");
 		if(keyword.equals("")) keyword="";
-		List<UnknownDTO> list = service.listSearch(searchType, keyword);
-		
+		int articleCnt=service.cntAtricle(searchType, keyword);
+		UnknownPagination p = new UnknownPagination(articleCnt, curPage);
+		List<UnknownDTO> list = service.listSearch(searchType, keyword,p.getStartIndex(),p.getPageSize());
 		for(UnknownDTO unknown:list) {
 			unknown.setaTitle(unknown.getaTitle()+" ["+unknown.getReplyCnt()+"]");
 		}
-		
+		model.addAttribute("page", p);
 		model.addAttribute("unknownList", list);
 		return "main/unknown/boardListView.lay";
 	}

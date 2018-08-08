@@ -46,8 +46,8 @@ public class UnknownServiceImpl implements UnknownService {
 	}
 
 	@Override
-	public List<UnknownDTO> listSearch(String searchType, String keyword) {
-		return dao.listSearch(searchType, keyword);
+	public List<UnknownDTO> listSearch(String searchType, String keyword, int startIndex, int pageSize) {
+		return dao.listSearch(searchType, keyword,startIndex,pageSize);
 	}
 
 	@Override
@@ -63,6 +63,11 @@ public class UnknownServiceImpl implements UnknownService {
 	@Override
 	public void deleteModify(int articleNo) {
 		dao.deleteModify(articleNo);
+	}
+
+	@Override
+	public int cntAtricle(String searchType, String keyword) {
+		return dao.cntAtricle(searchType, keyword);
 	}
 
 }

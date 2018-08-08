@@ -50,10 +50,12 @@ public class UnknownDAOImpl implements UnknownDAO {
 	}
 
 	@Override
-	public List<UnknownDTO> listSearch(String searchType, String keyword) {
+	public List<UnknownDTO> listSearch(String searchType, String keyword, int startIndex, int pageSize) {
 		Map<String, Object> paraMap = new HashMap<String,Object>();
 		paraMap.put("searchType", searchType);
 		paraMap.put("keyword", keyword);
+		paraMap.put("startIndex", startIndex);
+		paraMap.put("pageSize", pageSize);
 		return session.selectList(namespace+".listSearch", paraMap);
 	}
 
@@ -73,6 +75,14 @@ public class UnknownDAOImpl implements UnknownDAO {
 	@Override
 	public void deleteModify(int articleNo) {
 		session.update(namespace+".deleteModify", articleNo);
+	}
+
+	@Override
+	public int cntAtricle(String searchType, String keyword) {
+		Map<String, Object> paraMap = new HashMap<String,Object>();
+		paraMap.put("searchType", searchType);
+		paraMap.put("keyword", keyword);
+		return session.selectOne(namespace+".cntArticle", paraMap);
 	}
 
 }
