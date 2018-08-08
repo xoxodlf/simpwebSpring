@@ -56,7 +56,7 @@
 												<span
 													style="padding-right:10px;padding-left: calc(12*${unknown.depth}px);"><img
 													src="/ex/resources/img/arrow.png" /></span>
-											</c:if>${unknown.aTitle}</a></td>
+											</c:if>${unknown.aTitle} [${unknown.replyCnt}]</a></td>
 									<td class="ttdh">${unknown.aDate}</td>
 									<td class="ttdh">${unknown.aViewCount}</td>
 								</tr>

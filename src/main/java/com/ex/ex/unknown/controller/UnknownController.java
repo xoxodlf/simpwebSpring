@@ -110,9 +110,6 @@ public class UnknownController {
 		int articleCnt=service.cntAtricle(searchType, keyword);
 		UnknownPagination p = new UnknownPagination(articleCnt, curPage);
 		List<UnknownDTO> list = service.listSearch(searchType, keyword,p.getStartIndex(),p.getPageSize());
-		for(UnknownDTO unknown:list) {
-			unknown.setaTitle(unknown.getaTitle()+" ["+unknown.getReplyCnt()+"]");
-		}
 		model.addAttribute("page", p);
 		model.addAttribute("unknownList", list);
 		return "main/unknown/boardListView.lay";
