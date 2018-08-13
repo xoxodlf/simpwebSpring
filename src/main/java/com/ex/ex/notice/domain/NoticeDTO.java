@@ -12,14 +12,10 @@ public class NoticeDTO {
 	private Date aDate;
 	private int aViewCount;
 	private String userName;
-	
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+	private int depth;
+	private int group;
+	private int order;
+	private int isDelete;
 
 	public int getArticleNo() {
 		return articleNo;
@@ -77,10 +73,52 @@ public class NoticeDTO {
 		this.aViewCount = aViewCount;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public int getDepth() {
+		return depth;
+	}
+
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+
+	public int getGroup() {
+		return group;
+	}
+
+	public void setGroup(int group) {
+		this.group = group;
+	}
+
+	public int getOrder() {
+		return order;
+	}
+
+	public void setOrder(int order) {
+		this.order = order;
+	}
+
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
+	}
+
 	@Override
 	public String toString() {
 		return "NoticeDTO [articleNo=" + articleNo + ", userNo=" + userNo + ", aContent=" + aContent + ", boardNo="
-				+ boardNo + ", aTitle=" + aTitle + ", aDate=" + aDate + ", aViewCount=" + aViewCount + "]";
+				+ boardNo + ", aTitle=" + aTitle + ", aDate=" + aDate + ", aViewCount=" + aViewCount + ", userName="
+				+ userName + ", depth=" + depth + ", group=" + group + ", order=" + order + ", isDelete=" + isDelete
+				+ "]";
 	}
 
 }

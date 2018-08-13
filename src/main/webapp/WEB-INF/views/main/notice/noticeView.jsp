@@ -7,6 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Notice</title>
 <style type="text/css">
+.notice {
+	text-align: center;
+}
+
 .jth {
 	background: #47C83E;
 	text-align: center;
@@ -68,15 +72,37 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
-						<c:forEach items="${noticeList}" var="notice" varStatus="status">
-							<tr class="">
-								<td class="jjth">${notice.articleNo}</td>
-								<td class="jjth">${notice.userName}</td>
-								<td class="jjth"><a
-									href="/ex/notice/content?articleNo=${notice.articleNo}">${notice.aTitle}</a></td>
-								<td class="jjth">${notice.aDate}</td>
-								<td class="jjth">${notice.aViewCount}</td>
-							</tr>
+						<c:forEach items="${noticeList}" var="notice">
+							<c:choose>
+								<c:when test="${notice.isDelete==0}">
+									<tr class="">
+										<td class="jjth"><c:if test="${notice.depth==0}">${notice.articleNo}</c:if></td>
+										<td class="jjth">${notice.userName}</td>
+										<td class=""><a
+											href="/ex/notice/content?articleNo=${notice.articleNo}"><c:if
+													test="${notice.depth!=0}">
+													<span
+														style="padding-right:10px;padding-left: calc(12*${notice.depth}px);"><img
+														src="/ex/resources/img/arrow.png" /></span>
+												</c:if>${notice.aTitle}</a></td>
+										<td class="jjth">${notice.aDate}</td>
+										<td class="jjth">${notice.aViewCount}</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<tr class="">
+										<td class="jjth">${notice.articleNo}</td>
+										<td class="jjth">${notice.userName}</td>
+										<td class=""><c:if test="${notice.depth==1}">
+												<span
+													style="padding-right:10px;padding-left: calc(12*${notice.depth}px);"><img
+													src="/ex/resources/img/arrow.png" /></span>
+											</c:if>삭제 되었습니다.</td>
+										<td class="jjth">${notice.aDate}</td>
+										<td class="jjth">${notice.aViewCount}</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
@@ -99,43 +125,112 @@
 		maxlength="30" style="margin-left: 450px" />
 	<a id="search" class="ji btn mini fa" style="width: 10%"> <i
 		class="ti">검색</i></a>
-		<script type="text/javascript">
-			
 
-			$("#search").on(
-					'click',
-					(function() {
-						var target = document.getElementById("searchOption");
+	<div class="notice">
+		<c:if test="${NoticePaging.curRange ne 1 }">
+			<a href="#" onClick="paging_current(1)">[처음]</a>
+		</c:if>
+		<c:if test="${NoticePaging.curPage ne 1}">
+			<a href="#" onClick="paging_former'${NoticePaging.prevPage }')">[이전]</a>
+		</c:if>
+		<c:forEach var="pageNum" begin="${NoticePaging.startPage }"
+			end="${NoticePaging.endPage }">
+			<c:choose>
+				<c:when test="${pageNum eq  NoticePaging.curPage}">
+					<span style="font-weight: bold;"><a
+						onClick="paging_current('${pageNum}')">${pageNum }</a></span>
+				</c:when>
+				<c:otherwise>
+					<a onClick="paging_current('${pageNum}')">${pageNum }</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:if
+			test="${NoticePaging.curPage ne NoticePaging.pageCnt && NoticePaging.pageCnt > 0}">
+			<a onClick="paging_next('${NoticePaging.nextPage}')">[다음]</a>
+		</c:if>
+		<c:if
+			test="${NoticePaging.curRange ne NoticePaging.rangeCnt && NoticePaging.rangeCnt > 0}">
+			<a onClick="paging_current('${NoticePaging.pageCnt}')">[끝]</a>
+		</c:if>
+	</div>
 
-						if (target.options[target.selectedIndex].text == "전체"&&$("#searchWord").val()!="") {
-							alert("전체는 검색 내용을 작성할 수 없습니다.");
-						} else {
-							location.href = "/ex/notice/search?searchOption="
-									+ $("#searchOption").val() + "&searchWord="
-									+ $("#searchWord").val();
-						}
+	<div class="notice">총 게시글 수 : ${NoticePaging.listCnt } / 총 페이지 수
+		: ${NoticePaging.pageCnt } / 현재 페이지 : ${NoticePaging.curPage } / 현재 블럭
+		: ${NoticePaging.curRange } / 총 블럭 수 : ${NoticePaging.rangeCnt }</div>
 
-					}));
 
-			
-			$(document).ready(function(){
-				function getQuerystring(paramName) {
-					var _tempUrl = window.location.search.substring(1); //url에서 처음부터 '?'까지 삭제 
-					var _tempArray = _tempUrl.split('&'); // '&'을 기준으로 분리하기
-					for (var i = 0; _tempArray.length; i++) {
-						var _keyValuePair = _tempArray[i].split('=');
-						// '=' 을 기준으로 분리하기 
-						if (_keyValuePair[0] == paramName) { // _keyValuePair[0] : 파라미터 명 
-							// _keyValuePair[1] : 파라미터 값 
-							return _keyValuePair[1];
-						}
+	<script type="text/javascript">
+		$("#search").on(
+				'click',
+				(function() {
+					var target = document.getElementById("searchOption");
+
+					if (target.options[target.selectedIndex].text == "전체"
+							&& $("#searchWord").val() != "") {
+						alert("전체는 검색 내용을 작성할 수 없습니다.");
+					} else {
+						location.href = "/ex/notice/search?searchOption="
+								+ $("#searchOption").val() + "&searchWord="
+								+ $("#searchWord").val();
 					}
+
+				}));
+
+		$(document).ready(
+				function() {
+					var getParameters = function(paramName) {
+						var returnValue;
+						var url = location.href;
+						var parameters = (url.slice(url.indexOf('?') + 1,
+								url.length)).split('&');
+						for (var i = 0; i < parameters.length; i++) {
+							var varName = parameters[i].split('=')[0];
+							if (varName.toUpperCase() == paramName
+									.toUpperCase()) {
+								returnValue = parameters[i].split('=')[1];
+								return decodeURIComponent(returnValue);
+							}
+						}
+					};
+
+					$(
+							"select option[value='"
+									+ getParameters("searchOption") + "']")
+							.attr("selected", true);
+					$("#searchWord").val(getParameters("searchWord"));
+
+				});
+		
+		function getParameters(paramName) {
+			var returnValue;
+			var url = location.href;
+			var parameters = (url.slice(url.indexOf('?') + 1,
+					url.length)).split('&');
+			for (var i = 0; i < parameters.length; i++) {
+				var varName = parameters[i].split('=')[0];
+				if (varName.toUpperCase() == paramName.toUpperCase()) {
+					returnValue = parameters[i].split('=')[1];
+					return decodeURIComponent(returnValue);
 				}
-				
-				$("select option[value='"+getQuerystring('searchOption')+"']").attr("selected", true);
-				$("#searchWord").val(getQuerystring('searchWord'));
-			
-			});
-		</script>
+			}
+		}
+		function paging_former(prevPage){
+			var url = location.href;
+			var address = url.slice(0,url.indexOf('?')+1)+"searchOption="+getParameters("searchOption")+"&searchWord="+getParameters("searchWord")+"&curPage="+pageNum;
+			location.href=address;
+		}
+		function paging_current(pageNum){
+			var url = location.href;
+			var address = url.slice(0,url.indexOf('?')+1)+"searchOption="+getParameters("searchOption")+"&searchWord="+getParameters("searchWord")+"&curPage="+pageNum;
+			location.href=address;
+		}
+		function paging_next(nextPage){
+			var url = location.href;
+			var address = url.slice(0,url.indexOf('?')+1)+"searchOption="+getParameters("searchOption")+"&searchWord="+getParameters("searchWord")+"&curPage="+nextPage;
+			location.href=address;
+		}
+		
+	</script>
 </body>
 </html>

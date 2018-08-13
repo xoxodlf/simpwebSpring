@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -112,10 +113,15 @@ td {
 					</a> <a id="delete" data-placement="top"
 						class="ji btn mini fa fa-angle-right pagination-right "> <i
 						class="ji_color">삭제 하기</i>
-					</a>
+					</a> <a id="writeC"
+						href="/ex/notice/writeComment?articleNo=${notice.articleNo}"
+						class="ji btn mini fa fa-angle-right pagination-right "
+						style="margin-left: 5px;"> <i class="ji_color">답글달기</i></a>
 				</div>
 			</div>
-			<div class="table-max" style="width: 100%; margin-top: 20px;">
+		</form>
+		<div class="table-max" style="width: 100%; margin-top: 20px;">
+			<form id="NoticeComment">
 				<table class="table table-inbox table-max">
 					<colgroup>
 						<col width="12%" />
@@ -125,21 +131,32 @@ td {
 						<col width="10%" />
 					</colgroup>
 					<tr>
-						<td class="tdc j_thr" style="vertical-align: middle;">댓글 달기</td>
-						<td colspan="3"><textarea class="commentbox"></textarea></td>
-						<td><a id="list" data-placement="top" href="#" class="ji">
-								<i class="ji_color">등록</i>
-						</a></td>
+						<td class="tdc j_thr" style="vertical-align: middle;">댓글달기</td>
+						<td colspan="3"><textarea id="ccontent" class="commentbox"
+								name="cContent"></textarea></td>
+						<td><a id="replyAdd" class="btn btn"> <i class="ji">등록</i></a><input
+							type="hidden" name="userNo" value="1" /><input type="hidden"
+							name="articleNo" value="${notice.articleNo}" /></td>
 					</tr>
-					<tr style="margin-top: 20px;">
-						<td class="tdc j_thr">양태일</td>
-						<td colspan="3">제목은 비밀이지롱~</td>
-						<td></td>
-					</tr>
+					<c:choose>
+						<c:when test="${empty replyList}">
+							<tr>
+								<td class="jjdh" colspan="5">댓글이 없습니다.</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${replyList}" var="comment">
+								<tr style="margin-top: 20px;">
+									<td class="tdc j_thr">JIHEE</td>
+									<td colspan="3">${comment.cContent}</td>
+									<td>${comment.cDate}</td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 				</table>
-			</div>
-
-		</form>
+			</form>
+		</div>
 	</div>
 	<script type="text/javascript">
 		$("#modify").on('click', (function() {
@@ -153,6 +170,16 @@ td {
 			form.attr("action", "/ex/notice/delete");
 			form.attr("method", "post");
 			form.submit();
+		}));
+		$("#replyAdd").on('click', (function() {
+			if ($("#ccontent").val() == "") {
+				alert("댓글은 공백일 수 없습니다.");
+			} else {
+				var form = $("#NoticeComment");
+				form.attr("action", "/ex/notice/addReply");
+				form.attr("method", "post");
+				form.submit();
+			}
 		}));
 	</script>
 </body>

@@ -18,7 +18,7 @@ select * from article where boardNo = 3 order by articleNo desc
 </select>
 
 <select id="writer" resultType="java.lang.String">
-select uName from "user" where userNo = #{userNo}
+select uName from users where userNo = #{userNo}
 </select>
 
 <update id="modify">
@@ -46,7 +46,7 @@ aContent like '${keyword}'
 </if>
 <if test = "searchType=='writer'.toString()">
 userNo = (select userNo from users where uName = '${keyword}')
-</if>
+</if> 
 <if test = "searchType=='tAndc'.toString()">
 (aContent like '${keyword}' or aTitle like '${keyword}')
 </if>
