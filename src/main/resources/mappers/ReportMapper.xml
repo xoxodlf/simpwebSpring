@@ -3,109 +3,36 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ex.ex.mappers.ReportMapper">
-	<insert id="insert">
-		insert into
-		article(articleNo,userNo,aContent,boardNo,aTitle,aDate,aViewCount,depth,"order","group",isDelete)
-		values(ARTICLE_SEQ.nextVal,1,#{aContent},3,#{aTitle},sysdate,0,0,1,GROUP_SEQ.nextVal,0)
-	</insert>
+<mapper namespace = "com.ex.ex.mappers.ReportMapper">
+<insert id = "insert">
+insert into article(articleNo,userNo,aContent,boardNo,aTitle,aDate,aViewCount)
+values(ARTICLE_SEQ.nextVal,1,#{aContent},3,#{aTitle},sysdate,0)
+</insert>
 
-	<insert id="commentInsert">
-		insert into
-		article(articleNo,userNo,aContent,boardNo,aTitle,aDate,aViewCount,"group",DEPTH,"order",isDelete)
-		values(ARTICLE_SEQ.nextVal,1,#{aContent},3,#{aTitle},sysdate,0,#{group},#{depth}+1,#{order}+1,0)
-	</insert>
+<select id="article" resultType="report">
+select * from article where articleNo = #{articleNo}
+</select>
 
-	<insert id="replyInsert">
-		insert into
-		comments(commentNo,userNo,cContent,articleNo,cDate)
-		values(COMMENTS_SEQ.nextVal,1,#{cContent},#{articleNo},sysdate)
-	</insert>
+<select id="listAll" resultType="report">
+select * from article where boardNo = 3 order by articleNo desc
+</select>
 
-<<<<<<< HEAD
-	<update id="orderUpdate">
-		update article set "order"="order"+1 where
-		"group"=#{group} and "order">#{order}
-	</update>
-=======
 <select id="writer" resultType="java.lang.String">
 select uName from users where userNo = #{userNo}
 </select>
->>>>>>> branch 'master' of https://github.com/xoxodlf/test.git
 
-	<select id="article" resultType="report">
-		select * from article where
-		articleNo = #{articleNo}
-	</select>
+<update id="modify">
+update article set aContent = #{aContent},aTitle = #{aTitle} where articleNo = #{articleNo}
+</update>
 
-	<select id="listAll" resultType="report">
-		select * from (
-		select rownum rn,r.* from(
-		select * from (select a.*,nvl(replyCount,0) as replyCnt from article a left outer join (select count(*) as replyCount,articleNo from comments group by articleNo) r on a.articleNo=r.articleNo) where
-		boardNo=3 order by "group" desc, "order" asc
-		) r )
-	</select>
+<delete id="delete">
+delete from article where articleNo = #{articleNo}
+</delete>
 
-	<select id="replyList" resultType="reportReply">
-		select * from comments where
-		articleNo = #{articleNo} order by commentNo
-		desc
-	</select>
+<update id="count">
+update article set aViewCount = aViewCount + 1 where articleNo = #{articleNo}
+</update>
 
-<<<<<<< HEAD
-	<select id="writer" resultType="java.lang.String">
-		select uName from "user" where
-		userNo = #{userNo}
-	</select>
-
-	<update id="modify">
-		update article set aContent = #{aContent},aTitle =
-		#{aTitle} where articleNo
-		= #{articleNo}
-	</update>
-
-	<update id="delete">
-		update article set isDelete = 1 where articleNo = #{articleNo}
-	</update>
-
-	<update id="count">
-		update article set aViewCount = aViewCount + 1 where
-		articleNo =
-		#{articleNo}
-	</update>
-
-	<select id="searchList" resultType="report">
-		select * from (
-		select rownum rn,r.* from(
-		select * from (select a.*,nvl(replyCount,0) as replyCnt from article a left outer join (select count(*) as replyCount,articleNo from comments group by articleNo) r on a.articleNo=r.articleNo) where
-		boardNo=3 and
-		<if test="searchType=='all'.toString()">
-			aContent like '%%'
-		</if>
-		<if test="searchType=='title'.toString()">
-			aTitle like '%${keyword}%'
-		</if>
-		<if test="searchType=='content'.toString()">
-			aContent like '${keyword}'
-		</if>
-		<if test="searchType=='writer'.toString()">
-			userNo = (select userNo from users where uName =
-			'${keyword}')
-		</if>
-		<if test="searchType=='tAndc'.toString()">
-			(aContent like '${keyword}' or aTitle like '${keyword}')
-		</if>
-		order by "group" desc, "order" asc) r
-		<![CDATA[ 
-		) where rn>#{start} and rn<=#{start}+#{page}
-		]]>
-	</select>
-	
-	<select id="countArticle" resultType="int">
-		select nvl(count(*),0) from (select a.*,nvl(replyCount,0) as replyCnt from article a left outer join (select count(*) as replyCount,articleNo from comments group by articleNo) r on a.articleNo=r.articleNo) where
-		boardNo=3
-	</select>
-=======
 <select id="searchList" resultType="report">
 select * from article where boardNo = 3 and
 <if test = "searchType=='all'.toString()">
@@ -125,5 +52,4 @@ userNo = (select userNo from users where uName = '${keyword}')
 </if>
 order by articleNo desc
 </select>
->>>>>>> branch 'master' of https://github.com/xoxodlf/test.git
 </mapper>
