@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ex.ex.report.dao.ReportDAO;
 import com.ex.ex.report.domain.ReportDTO;
+import com.ex.ex.report.domain.ReportReplyDTO;
 
 @Service
 public class ReportServicelmpl implements ReportService {
@@ -58,9 +59,44 @@ public class ReportServicelmpl implements ReportService {
 	}
 
 	@Override
-	public List<ReportDTO> searchList(String searchType,String keyword) {
+	public List<ReportDTO> searchList(String searchType,String keyword,int start,int page) {
 		// TODO Auto-generated method stub
-		return dao.searchList(searchType,keyword);
+		return dao.searchList(searchType,keyword,start,page);
+	}
+
+	@Override
+	public List<ReportReplyDTO> replyList(int articleNo) {
+		// TODO Auto-generated method stub
+		return dao.replyList(articleNo);
+	}
+
+	@Override
+	public void replyInsert(ReportReplyDTO dto) {
+		// TODO Auto-generated method stub
+		dao.replyInsert(dto);
+	}
+
+	@Override
+	public void commentInsert(ReportDTO dto) {
+		// TODO Auto-generated method stub
+		dao.commentInsert(dto);
+	}
+
+	@Override
+	public void orderUpdate(int group, int order) {
+		// TODO Auto-generated method stub
+		dao.orderUpdate(group,order);
+	}
+
+	@Override
+	public int countArticle(String searchType, String keyword) {
+		// TODO Auto-generated method stub
+		return dao.countArticle(searchType,keyword);
+	}
+	
+	public int countArticle() {
+		// TODO Auto-generated method stub
+		return dao.countArticle();
 	}
 
 }

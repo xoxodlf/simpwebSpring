@@ -13,9 +13,5 @@ public interface NoticeDAO {
 	public void upCount(int articleNo);
 	public void modify(NoticeDTO notice);
 	public void delete(int articleNo);
-	public List<NoticeDTO> search(String searchOption, String searchWord, int startIndex, int pageSize);
-	public void insertComment(NoticeDTO notice);
-	public void updateOrder(int group,int order);
-	public void deleteNotice(int articleNo);
-	public int selectBoardListCnt(NoticeDTO notice, String searchOption, String searchWord);
+	public List<NoticeDTO> search(String searchOption, String searchWord);
 }

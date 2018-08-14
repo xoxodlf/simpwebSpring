@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.javassist.compiler.ast.Keyword;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
@@ -55,44 +56,12 @@ public class NoticeDAOImpl implements NoticeDAO {
 	}
 
 	@Override
-	public List<NoticeDTO> search(String searchOption, String searchWord, int startIndex, int pageSize) {
+	public List<NoticeDTO> search(String searchOption, String searchWord) {
 		Map<String, Object> paraMap = new HashMap<String, Object>();
-		paraMap.put("startIndex", startIndex);
-		paraMap.put("pageSize", pageSize);
 		paraMap.put("searchOption", searchOption);
 		paraMap.put("searchWord", searchWord);
-		return session.selectList(namespace + ".search", paraMap);
+		return session.selectList(namespace+".search", paraMap);
 
-	}
-
-	@Override
-	public void insertComment(NoticeDTO notice) {
-		session.insert(namespace+".insertComment", notice);
-		
-	}
-
-	@Override
-	public void updateOrder(int group, int order) {
-		Map<String, Object> paraMap = new HashMap<String,Object>();
-		paraMap.put("group", group);
-		paraMap.put("order", order);
-		session.update(namespace+".updateOrder", paraMap);
-		
-	}
-
-	@Override
-	public void deleteNotice(int articleNo) {
-		session.update(namespace + ".deleteNotice", articleNo);
-		
-	}
-
-	@Override
-	public int selectBoardListCnt(NoticeDTO notice, String searchOption, String searchWord) {
-		Map<String, Object> paraMap = new HashMap<String, Object>();
-		paraMap.put("notice", notice);
-		paraMap.put("searchOption", searchOption);
-		paraMap.put("searchWord", searchWord);
-		return session.selectOne(namespace+".cnt", paraMap);
 	}
 
 }

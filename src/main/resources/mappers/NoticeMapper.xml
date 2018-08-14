@@ -6,13 +6,13 @@
 <mapper namespace="com.ex.ex.mappers.NoticeMapper">
 	<insert id="insert">
 		insert into
-		article(articleNo,userNo,aContent,boardNo,aTitle,aDate,aViewCount,depth,"order","group",isDelete)
-		values(ARTICLE_SEQ.nextVal,#{userNo},#{aContent},#{boardNo},#{aTitle},sysdate,0,0,1,GROUP_SEQ.nextVal,0)
+		article(articleNo,userNo,aContent,boardNo,aTitle,aDate,aViewCount)
+		values(ARTICLE_SEQ.nextVal,#{userNo},#{aContent},#{boardNo},#{aTitle},sysdate,0)
 	</insert>
 
 	<select id="listAll" resultType="notice">
 		select * from article where
-		boardNo=4 order by "group" desc,"order" asc
+		boardNo=4 order by articleNo desc
 	</select>
 
 	<select id="getuName" resultType="noticeuser">
@@ -41,68 +41,19 @@
 	</delete>
 
 	<select id="search" resultType="notice">
-		select * from (
-		select rownum as rn,a.* from
-		(
-		select a.* , u.uname as userName from article a left outer join users
-		u on a.userNo=u.userNo where boardNo=4 and
+		select a.* , u.uname as userName from article a  left outer join users u on a.userNo=u.userNo where boardNo=4 and 
 		<if test="searchOption=='a'.toString()">
 			acontent like '%%'
 		</if>
 		<if test="searchOption=='n'.toString()">
-			u.uname = #{searchWord}
-		</if>
+			u.uname = #{searchWord} </if>
 		<if test="searchOption=='t'.toString()">
 			atitle like '%${searchWord}%' </if>
 		<if test="searchOption=='c'.toString()">
 			acontent like '%${searchWord}%' </if>
 		<if test="searchOption=='tc'.toString()">
-			(atitle like '%${searchWord}%' or acontent like
-			'%${searchWord}%')</if>
-		order by "group" desc,"order" asc
-		) a) 
-		<![CDATA[ 
-        where rn> #{startIndex} and rn<=#{startIndex}+#{pageSize}
-        ]]>
+			(atitle like '%${searchWord}%' or acontent like '%${searchWord}%')</if>
+		order by articleNo desc
 	</select>
-
-	<insert id="insertComment">
-		insert into
-		article(articleNo,userNo,aContent,boardNo,aTitle,aDate,aViewCount,depth,"order","group",isDelete)
-		values(ARTICLE_SEQ.nextVal,#{userNo},#{aContent},#{boardNo},#{aTitle},sysdate,0,#{depth}+1,#{order}+1,#{group},0)
-	</insert>
-
-	<update id="updateOrder">
-		update article set "order"="order"+1 where
-		"group"=#{group} and "order">#{order}
-	</update>
-
-	<update id="deleteNotice">
-		update article set
-		isDelete=1 where
-		articleNo=#{articleNo}
-	</update>
-
-	<select id="cnt" resultType="int">
-		select count(*) from (
-		select a.* , u.uname as userName from article a
-		left outer join users
-		u on a.userNo=u.userNo where boardNo=4 and
-		<if test="searchOption=='a'.toString()">
-			acontent like '%%'
-		</if>
-		<if test="searchOption=='n'.toString()">
-			u.uname = #{searchWord}
-		</if>
-		<if test="searchOption=='t'.toString()">
-			atitle like '%${searchWord}%' </if>
-		<if test="searchOption=='c'.toString()">
-			acontent like '%${searchWord}%' </if>
-		<if test="searchOption=='tc'.toString()">
-			(atitle like '%${searchWord}%' or acontent like
-			'%${searchWord}%')</if>
-		)
-	</select>
-
 
 </mapper>

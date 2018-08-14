@@ -74,13 +74,13 @@
 				</colgroup>
 				<tr class="j_thr">
 					<td class="jdc">제목 :</td>
-					<td class="jdc" colspan="3"><input id="aTitle" class="tinput"
-						type="text" name="aTitle" value="${notice.aTitle}" /></td>
+					<td class="jdc" colspan="3"><input class="tinput" type="text"
+						name="aTitle" value="${notice.aTitle}" /></td>
 				</tr>
 				<tr>
 					<td class="tdc">내용 :</td>
-					<td class="table_content" colspan="3"><textarea id="aContent"
-							class="ta_content" name="aContent">${notice.aContent}</textarea></td>
+					<td class="table_content" colspan="3"><textarea
+							class="ta_content" name="aContent" >${notice.aContent}</textarea></td>
 					<td><input type="hidden" name="articleNo"
 						value="${notice.articleNo}" /></td>
 				</tr>
@@ -94,16 +94,9 @@
 	</div>
 	<script type="text/javascript">
 		$("#modify").on('click', (function() {
-			if ($("#aTitle").val() == "") {
-				alert("제목은 공백일 수 없습니다.");
-			} else if ($("#aContent").val() == "") {
-				alert("내용은 공백일 수 없습니다.");
-			} else {
-				var form = $("#Modify");
-				form.attr("action", "/ex/notice/update");
-				form.submit();
-			}
-
+			var form = $("#Modify");
+			form.attr("action", "/ex/notice/update");
+			form.submit();
 		}));
 	</script>
 </body>

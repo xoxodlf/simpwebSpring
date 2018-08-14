@@ -52,29 +52,8 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public List<NoticeDTO> search(String searchOption, String searchWord, int startIndex, int pageSize) {
-		return dao.search(searchOption, searchWord, startIndex, pageSize);
-	}
-
-	@Override
-	public void insertComment(NoticeDTO notice) {
-		dao.insertComment(notice);
-	}
-
-	@Override
-	public void updateOrder(int group, int order) {
-		dao.updateOrder(group, order);
-
-	}
-
-	@Override
-	public void deleteNotice(int articleNo) {
-		dao.deleteNotice(articleNo);
-	}
-
-	@Override
-	public int selectBoardListCnt(NoticeDTO notice, String searchOption, String searchWord) {
-		return dao.selectBoardListCnt(notice,searchOption,searchWord);
+	public List<NoticeDTO> search(String searchOption, String searchWord) {
+		return dao.search(searchOption, searchWord);
 	}
 
 }
