@@ -22,10 +22,16 @@
 		values(COMMENTS_SEQ.nextVal,1,#{cContent},#{articleNo},sysdate)
 	</insert>
 
+<<<<<<< HEAD
 	<update id="orderUpdate">
 		update article set "order"="order"+1 where
 		"group"=#{group} and "order">#{order}
 	</update>
+=======
+<select id="writer" resultType="java.lang.String">
+select uName from users where userNo = #{userNo}
+</select>
+>>>>>>> branch 'master' of https://github.com/xoxodlf/test.git
 
 	<select id="article" resultType="report">
 		select * from article where
@@ -46,6 +52,7 @@
 		desc
 	</select>
 
+<<<<<<< HEAD
 	<select id="writer" resultType="java.lang.String">
 		select uName from "user" where
 		userNo = #{userNo}
@@ -98,4 +105,25 @@
 		select nvl(count(*),0) from (select a.*,nvl(replyCount,0) as replyCnt from article a left outer join (select count(*) as replyCount,articleNo from comments group by articleNo) r on a.articleNo=r.articleNo) where
 		boardNo=3
 	</select>
+=======
+<select id="searchList" resultType="report">
+select * from article where boardNo = 3 and
+<if test = "searchType=='all'.toString()">
+aContent like '%%'
+</if>
+<if test = "searchType=='title'.toString()">
+aTitle like '%${keyword}%'
+</if>
+<if test = "searchType=='content'.toString()">
+aContent like '${keyword}'
+</if>
+<if test = "searchType=='writer'.toString()">
+userNo = (select userNo from users where uName = '${keyword}')
+</if> 
+<if test = "searchType=='tAndc'.toString()">
+(aContent like '${keyword}' or aTitle like '${keyword}')
+</if>
+order by articleNo desc
+</select>
+>>>>>>> branch 'master' of https://github.com/xoxodlf/test.git
 </mapper>
