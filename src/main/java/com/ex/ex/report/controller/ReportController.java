@@ -122,8 +122,6 @@ public class ReportController {
 	@RequestMapping(value = "commentWriting", method = RequestMethod.GET)
 	public String reportCommentWriting(ReportDTO dto, RedirectAttributes rttr) {
 		
-		System.out.println(dto.toString());
-		
 		service.orderUpdate(dto.getGroup(), dto.getOrder());
 		service.commentInsert(dto);
 
@@ -158,8 +156,8 @@ public class ReportController {
 		int articleCount=service.countArticle(searchType, keyword);
 		ReportPaging p = new ReportPaging(articleCount,curPage);
 		
-		List<ReportDTO> list = service.searchList(searchType, keyword,p.getArticleCnt(),p.getPageSize());
-
+		List<ReportDTO> list = service.searchList(searchType, keyword,p.getStartIndex(),p.getPageSize());
+		
 		List<String> writer = new ArrayList<String>();
 
 		for (ReportDTO dto : list) {

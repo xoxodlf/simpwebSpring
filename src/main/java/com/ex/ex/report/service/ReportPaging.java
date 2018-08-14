@@ -67,16 +67,8 @@ public class ReportPaging {
 		return pageCnt;
 	}
 
-	public void setPageCnt(int pageCnt) {
-		this.pageCnt = pageCnt;
-	}
-
 	public int getGroupCnt() {
 		return groupCnt;
-	}
-
-	public void setGroupCnt(int groupCnt) {
-		this.groupCnt = groupCnt;
 	}
 
 	public int getStartPage() {
@@ -139,4 +131,12 @@ public class ReportPaging {
         this.prevPage = curPage - 1;
         this.nextPage = curPage + 1;
     }
+	
+	public void setPageCnt(int articleCnt) {
+		this.pageCnt=(int)Math.ceil(articleCnt*1.0/pageSize);
+	}
+	
+	public void setGroupCnt(int pageCnt) {
+		this.groupCnt = (int) Math.ceil(pageCnt*1.0/groupSize);
+	}
 }

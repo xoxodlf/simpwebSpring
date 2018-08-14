@@ -189,18 +189,24 @@
 	
 	function goBeforePage(startPage,groupSize){
 		var url = location.href;
-		var address = url.slice(0,url.indexOf('?')+1)+"searchType="+getParameters("searchType")+"&keyword="+getParameters("keyword")+"&curPage="+(startPage-groupSize);
-		location.href=address;
+		location.href = "/ex/report/searchList?searchType="
+			+ $("#searchType").val() + "&keyword="
+			+ $("#keyword").val()+"&curPage="+(startPage-groupSize);
+
 	}
 	function goNextPage(endPage){
 		var url = location.href;
-		var address = url.slice(0,url.indexOf('?')+1)+"searchType="+$("#searchType").val()+"&keyword="+$("#keyword").val()+"&curPage="+(endPage+1);
-		location.href=address;
+		location.href = "/ex/report/searchList?searchType="
+			+ $("#searchType").val() + "&keyword="
+			+ $("#keyword").val()+"&curPage="+(endPage+1);
+
 	}
 	function goPage(pageNum){
 		var url = location.href;
-		var address = url.slice(0,url.indexOf('?')+1)+"searchType="+$("#searchType").val()+"&keyword="+$("#keyword").val()+"&curPage="+pageNum;
-		location.href=address;
+		location.href = "/ex/report/searchList?searchType="
+			+ $("#searchType").val() + "&keyword="
+			+ $("#keyword").val()+"&curPage="+pageNum;
+
 	}
 
 		
