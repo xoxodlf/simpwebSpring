@@ -66,7 +66,7 @@ text-align: right;
 				</tr>
 			</table>
 			<div class="table-max right" style="width:100%; margin-top: 20px;">
-				<input type="submit" value="글쓰기" data-placement="top" href="#" class="tbtn btn ti" style="background-color: #8B32C7"/>
+				<input type="button" id="write" value="글쓰기" data-placement="top" href="#" class="tbtn btn ti" style="background-color: #8B32C7"/>
 			</div>
 		</form>
 	</div>

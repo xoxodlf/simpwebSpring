@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -55,14 +54,36 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${reportList }" var="report" varStatus="status">
-							<tr>
-								<td class="ttdh">${report.articleNo }</td>
-								<td class="ttdh"><a
-									href="/ex/report/View?articleNo=${report.articleNo}">${report.aTitle }</a></td>
-								<td class="ttdh">${report.aDate }</td>
-								<td class="ttdh">${Writer[status.index] }</td>
-								<td class="ttdh">${report.aViewCount }</td>
-							</tr>
+							<c:choose>
+								<c:when test="${report.isDelete==0}">
+									<tr>
+										<td class="ttdh"><c:if test="${report.depth==0}">${report.articleNo }</c:if></td>
+										<td class=""><a
+											href="/ex/report/View?articleNo=${report.articleNo}"><c:if
+													test="${report.depth!=0}">
+													<span
+														style="padding-right:10px;padding-left: calc(12*${report.depth}px);"><img
+														src="/ex/resources/img/arrow.png" /></span>
+												</c:if>${report.aTitle }</a></td>
+										<td class="ttdh">${report.aDate }</td>
+										<td class="ttdh">${Writer[status.index] }</td>
+										<td class="ttdh">${report.aViewCount }</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<tr class="">
+										<td class="ttdh">${report.articleNo}</td>
+										<td class=""><c:if test="${report.depth!=0}">
+												<span
+													style="padding-right:10px;padding-left: calc(12*${report.depth}px);"><img
+													src="/ex/resources/img/arrow.png" /></span>
+											</c:if>이 게시물은 삭제된 게시물입니다.</td>
+										<td class="ttdh">${report.aDate}</td>
+										<td class="ttdh">${Writer[status.index] }</td>
+										<td class="ttdh">${report.aViewCount}</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
@@ -78,43 +99,112 @@
 			</colgroup>
 			<tr>
 				<td></td>
-				<td style="margin-right: 5px;"><select  name="searchType" id="searchType" class="form-control "  style="width:95%;">
+				<td style="margin-right: 5px;"><select name="searchType"
+					id="searchType" class="form-control " style="width: 95%;">
 						<option value="all">전체</option>
 						<option value="title">제목</option>
 						<option value="content">내용</option>
 						<option value="writer">작성자</option>
 						<option value="tAndc">제목+내용</option>
 				</select></td>
-				<td><input class="form-control" type="text" id="keyword" name="keyword"/></td>
-				<td><a id="search"  class="tbtn btn" style="width:80%; background-color: #8B32C7"> <i
-					class="ti">검색</i>
+				<td><input class="form-control" type="text" id="keyword"
+					name="keyword" /></td>
+				<td><a id="search" class="tbtn btn"
+					style="width: 80%; background-color: #8B32C7"> <i class="ti">검색</i>
 				</a></td>
 				<td></td>
 			</tr>
 
 		</table>
+		<nav style="text-align: center;">
+			<ul class="pagination">
+				<c:if test="${page.curGroup ne 1}">
+					<li class="page-item"><a style="cursor: pointer;"
+						class="page-link"
+						onclick="goBeforePage(${page.startPage},${page.groupSize})"
+						aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+							<span class="sr-only">Previous</span>
+					</a></li>
+				</c:if>
+				<c:forEach var="pageNum" begin="${page.startPage }"
+					end="${page.endPage }">
+					<c:choose>
+						<c:when test="${pageNum eq  page.curPage}">
+							<li class="page-item""><a
+								style="background-color: #8B32C7; cursor: pointer; color: white;"
+								class="page-link" onclick="goPage(${pageNum})">${pageNum}</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a style="cursor: pointer;"
+								class="page-link" onclick="goPage(${pageNum})">${pageNum}</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+				<c:if test="${page.curGroup ne page.groupCnt}">
+					<li class="page-item"><a style="cursor: pointer;"
+						class="page-link" onclick="goNextPage(${page.endPage})"
+						aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span
+							class="sr-only">Next</span>
+					</a></li>
+				</c:if>
+			</ul>
+		</nav>
 	</div>
 	<script type="text/javascript">
-		$(document).ready(
-				function() {
-					var getParameters = function(paramName) {
-						var returnValue;
-						var url = location.href;
-						var parameters = (url.slice(url.indexOf('?') + 1,
-								url.length)).split('&');
-						for (var i = 0; i < parameters.length; i++) {
-							var varName = parameters[i].split('=')[0];
-							if (varName.toUpperCase() == paramName
-									.toUpperCase()) {
-								returnValue = parameters[i].split('=')[1];
-								return decodeURIComponent(returnValue);
-							}
+	$(document).ready(
+			function() {
+				var getParameters = function(paramName) {
+					var returnValue;
+					var url = location.href;
+					var parameters = (url.slice(url.indexOf('?') + 1,
+							url.length)).split('&');
+					for (var i = 0; i < parameters.length; i++) {
+						var varName = parameters[i].split('=')[0];
+						if (varName.toUpperCase() == paramName
+								.toUpperCase()) {
+							returnValue = parameters[i].split('=')[1];
+							return decodeURIComponent(returnValue);
 						}
-					};
-					
-					$("select option[value='"+getParameters("searchType")+"']").attr("selected", true);
+					}
+					$("select option[value='"
+									+ getParameters("searchType") + "']").attr(
+							"selected", true);
 					$("#keyword").val(getParameters("keyword"));
+				};
 				});
+					
+	function getParameters(paramName) {
+		var returnValue;
+		var url = location.href;
+		var parameters = (url.slice(url.indexOf('?') + 1,
+				url.length)).split('&');
+		for (var i = 0; i < parameters.length; i++) {
+			var varName = parameters[i].split('=')[0];
+			if (varName.toUpperCase() == paramName.toUpperCase()) {
+				returnValue = parameters[i].split('=')[1];
+				return decodeURIComponent(returnValue);
+			}
+		}
+	}
+	
+	function goBeforePage(startPage,groupSize){
+		var url = location.href;
+		var address = url.slice(0,url.indexOf('?')+1)+"searchType="+getParameters("searchType")+"&keyword="+getParameters("keyword")+"&curPage="+(startPage-groupSize);
+		location.href=address;
+	}
+	function goNextPage(endPage){
+		var url = location.href;
+		var address = url.slice(0,url.indexOf('?')+1)+"searchType="+$("#searchType").val()+"&keyword="+$("#keyword").val()+"&curPage="+(endPage+1);
+		location.href=address;
+	}
+	function goPage(pageNum){
+		var url = location.href;
+		var address = url.slice(0,url.indexOf('?')+1)+"searchType="+$("#searchType").val()+"&keyword="+$("#keyword").val()+"&curPage="+pageNum;
+		location.href=address;
+	}
+
+		
+		
 
 		$("#write").on('click', (function() {
 			location.href = "/ex/report/Form";
@@ -122,9 +212,13 @@
 		$("#goView").on('click', (function() {
 			location.href = "/ex/report/View";
 		}));
-		$("#search").on('click', (function() {
-			location.href = "/ex/report/searchList?searchType="+$("#searchType").val()+"&keyword="+$("#keyword").val();
-		}));
+		$("#search").on(
+				'click',
+				(function() {
+					location.href = "/ex/report/searchList?searchType="
+							+ $("#searchType").val() + "&keyword="
+							+ $("#keyword").val();
+				}));
 	</script>
 </body>
 </html>
