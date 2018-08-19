@@ -11,20 +11,14 @@
 	color: black;
 }
 
+.j_thr {
+	background: #47C83E;
+	color: white;
+	text-align: center;
+}
+
 .jdc {
 	background: #47C83E;
-}
-
-.ji {
-	background: #47C83E;
-	text-align: center;
-	color: white;
-}
-
-.jth {
-	background: #47C83E;
-	text-align: center;
-	color: white;
 }
 
 .tdc {
@@ -46,12 +40,24 @@
 	height: 100%;
 }
 
+.ji {
+	background: #47C83E;
+	text-align: center;
+	color: white;
+}
+
 .table-max {
 	max-width: 965px;
 }
 
 .right {
 	text-align: right;
+}
+
+.commentbox {
+	max-width: 965px;
+	min-width: 700px;
+	resize: none;
 }
 </style>
 </head>
@@ -63,7 +69,7 @@
 			</p>
 			<h4 style="margin-left: 30px;">공지사항 입니다.</h4>
 		</div>
-		<form id="Modify" method="post">
+		<form id="NoticeComment" method="post">
 			<table class="table table-inbox table-max">
 				<colgroup>
 					<col width="10%" />
@@ -74,33 +80,38 @@
 				</colgroup>
 				<tr class="j_thr">
 					<td class="jdc">제목 :</td>
-					<td class="jdc" colspan="3"><input id="aTitle" class="tinput"
-						type="text" name="aTitle" value="${notice.aTitle}" /></td>
+					<td colspan="3"><input id="aTitle" class="tinput" type="text"
+						name="aTitle" value="Re:${notice.aTitle}" /></td>
+					<td><input type="hidden" name="group" value="${notice.group}" />
+						<input type="hidden" name="order" value="${notice.order}" /> <input
+						type="hidden" name="depth" value="${notice.depth}" /> <input
+						type="hidden" name="userNo" value="${notice.userNo}" /> <input
+						type="hidden" name="boardNo" value="${notice.boardNo}" /></td>
 				</tr>
 				<tr>
 					<td class="tdc">내용 :</td>
 					<td class="table_content" colspan="3"><textarea id="aContent"
-							class="ta_content" name="aContent">${notice.aContent}</textarea></td>
+							class="ta_content" name="aContent"></textarea></td>
 					<td><input type="hidden" name="articleNo"
 						value="${notice.articleNo}" /></td>
 				</tr>
 			</table>
 			<div class="table-max right" style="width: 100%; margin-top: 20px;">
-				<a id="modify" data-placement="top"
-					class="ji btn mini fa fa-angle-right pagination-right "> <i
-					class="ti">수정 하기</i></a>
+				<a id="add" data-placement="top"
+					class="ji btn mini fa fa-angle-right pagination-right"> <i
+					class="ji">답글작성</i></a>
 			</div>
 		</form>
 	</div>
 	<script type="text/javascript">
-		$("#modify").on('click', (function() {
+		$("#add").on('click', (function() {
 			if ($("#aTitle").val() == "") {
 				alert("제목은 공백일 수 없습니다.");
 			} else if ($("#aContent").val() == "") {
 				alert("내용은 공백일 수 없습니다.");
 			} else {
-				var form = $("#Modify");
-				form.attr("action", "/ex/notice/update");
+				var form = $("#NoticeComment");
+				form.attr("action", "/ex/notice/insertComment");
 				form.submit();
 			}
 
