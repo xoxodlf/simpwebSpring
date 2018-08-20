@@ -52,7 +52,7 @@
 	</select>
 
 	<select id="writer" resultType="java.lang.String">
-		select uName from "user" where
+		select uName from users where
 		userNo = #{userNo}
 	</select>
 
